@@ -27,7 +27,7 @@
                  <asp:TextBox ID="Name" Text="Name" runat="server"></asp:TextBox>
                  <asp:TextBox ID="NewUserName" Text="New User name" runat="server"></asp:TextBox>
                  <asp:Button ID="CreateUser" Text="Create User" OnClick="CreateUser_Click" runat="server"></asp:Button>
-                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="{usrVar}" ErrorMessage="User already exists"></asp:CompareValidator>
+                 <!--<asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="{usrVar}" ErrorMessage="User already exists"></asp:CompareValidator>-->
             </fieldset>
         </div>
     </div>
