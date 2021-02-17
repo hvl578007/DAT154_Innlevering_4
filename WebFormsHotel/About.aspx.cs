@@ -13,7 +13,14 @@ namespace WebFormsHotel
         {
             //hallo guddi!!!
 
+            //BookingsGrid = //TODO - hent bookings for brukeren fra databasen 
+
             
+        }
+
+        protected void BookingBTN_Click(object sender, EventArgs e)
+        {
+            //TODO - fiks booking server knappen til å ta en til søkesiden
         }
     }
 }
