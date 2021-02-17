@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFormsHotel", "WebFormsHo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopWPFHotel", "DesktopWPFHotel\DesktopWPFHotel.csproj", "{6D2761A0-07D7-4A37-9A77-4DF67842DD98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryHotel", "ClassLibraryHotel\ClassLibraryHotel.csproj", "{53C1F92F-D23D-4C2E-A481-08E4818DEFDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6D2761A0-07D7-4A37-9A77-4DF67842DD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D2761A0-07D7-4A37-9A77-4DF67842DD98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D2761A0-07D7-4A37-9A77-4DF67842DD98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53C1F92F-D23D-4C2E-A481-08E4818DEFDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53C1F92F-D23D-4C2E-A481-08E4818DEFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53C1F92F-D23D-4C2E-A481-08E4818DEFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53C1F92F-D23D-4C2E-A481-08E4818DEFDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

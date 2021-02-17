@@ -197,6 +197,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SearchRooms.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -252,6 +253,13 @@
     </Compile>
     <Compile Include="Room.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchRooms.aspx.cs">
+      <DependentUpon>SearchRooms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchRooms.aspx.designer.cs">
+      <DependentUpon>SearchRooms.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

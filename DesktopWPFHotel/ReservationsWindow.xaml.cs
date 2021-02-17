@@ -10,39 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 using ClassLibraryHotel;
 
 namespace DesktopWPFHotel
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ReservationsWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ReservationsWindow : Window
     {
-        //databasekopling - bruk hcx!
         private hotelEntities1 hcx = new hotelEntities1();
 
-        public MainWindow()
+        public ReservationsWindow()
         {
-            
             InitializeComponent();
-
-            //lage nytt vindu - burde sende med hcx som parameter til vinduet!
-            //new ReservationsWindow(hcx);
-
         }
 
-        private void Reservation_Button(object sender, RoutedEventArgs e)
+        public ReservationsWindow(hotelEntities1 hcx)
         {
-            new ReservationsWindow(hcx);
-        }
-
-        private void RoomInfo_Button(object sender, RoutedEventArgs e)
-        {
-            new RoomInfo(hcx);
+            InitializeComponent();
+            
         }
     }
 }
