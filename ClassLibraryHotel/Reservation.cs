@@ -12,7 +12,7 @@ namespace ClassLibraryHotel
     using System;
     using System.Collections.Generic;
     
-    public partial class Reservations
+    public partial class Reservation
     {
         public int ReservationId { get; set; }
         public System.DateTime DateStart { get; set; }
@@ -22,7 +22,7 @@ namespace ClassLibraryHotel
         public int RoomRoomId { get; set; }
         public string UserUsername { get; set; }
     
-        public virtual Rooms Rooms { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual Room Room { get; set; }
+        public virtual User User { get; set; }
     }
 }

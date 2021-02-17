@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,17 @@ namespace DesktopWPFHotel
     public partial class MainWindow : Window
     {
         //databasekopling - bruk hcx!
-        private hotelEntities1 hcx = new hotelEntities1();
+        private HotelContext hcx = new HotelContext();
 
         public MainWindow()
         {
             
             InitializeComponent();
+
+            hcx.Rooms.Load();
+
+            //hcx.Rooms.Add(new Room { RoomId = 100, NumOfBeds = 2, Size = 1 });
+            //hcx.SaveChanges();
 
             //lage nytt vindu - burde sende med hcx som parameter til vinduet!
             //new ReservationsWindow(hcx);

@@ -23,7 +23,7 @@
             <br />
             <asp:Button ID="SearchButton" runat="server" Text="Search" OnClick="SearchButton_Click" />
         </div>
-        <div style="float:right; width=70%">
+        <div style="float:right; width:70%">
             <br />
             <asp:Label ID="Label3" runat="server" Text="Avaliable rooms"></asp:Label>
             <asp:GridView ID="GridViewRooms" runat="server" OnSelectedIndexChanged="GridViewRooms_SelectedIndexChanged"></asp:GridView>

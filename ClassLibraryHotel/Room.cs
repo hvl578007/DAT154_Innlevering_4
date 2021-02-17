@@ -12,13 +12,13 @@ namespace ClassLibraryHotel
     using System;
     using System.Collections.Generic;
     
-    public partial class Rooms
+    public partial class Room
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rooms()
+        public Room()
         {
-            this.Reservations = new HashSet<Reservations>();
-            this.Tasks = new HashSet<Tasks>();
+            this.Reservations = new HashSet<Reservation>();
+            this.Tasks = new HashSet<Task>();
         }
     
         public int RoomId { get; set; }
@@ -26,8 +26,8 @@ namespace ClassLibraryHotel
         public int Size { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reservations> Reservations { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

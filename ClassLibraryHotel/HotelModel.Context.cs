@@ -13,11 +13,12 @@ namespace ClassLibraryHotel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class hotelEntities1 : DbContext
+    public partial class HotelContext : DbContext
     {
-        public hotelEntities1()
-            : base("name=hotelEntities1")
+        public HotelContext()
+            : base("name=HotelContext")
         {
+            Database.SetInitializer<HotelContext>(new HotelInitializer());
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -25,9 +26,9 @@ namespace ClassLibraryHotel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Reservations> Reservations { get; set; }
-        public virtual DbSet<Rooms> Rooms { get; set; }
-        public virtual DbSet<Tasks> Tasks { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Reservation> Reservations { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<Task> Tasks { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

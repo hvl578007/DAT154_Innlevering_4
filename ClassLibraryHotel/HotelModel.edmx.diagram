@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="84211886dbb44ce39f5c0d08244ec470" Name="Diagram1">
-        <EntityTypeShape EntityType="HotelModel.Reservations" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HotelModel.Rooms" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HotelModel.Tasks" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HotelModel.Users" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="e1155ebe063e49398937c92663e4ca9d" Name="Diagram1">
+        <EntityTypeShape EntityType="HotelModel.Reservation" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelModel.Room" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelModel.Task" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="HotelModel.FK_RoomReservation" ManuallyRouted="false" />
         <AssociationConnector Association="HotelModel.FK_UserReservation" ManuallyRouted="false" />
         <AssociationConnector Association="HotelModel.FK_RoomTask" ManuallyRouted="false" />

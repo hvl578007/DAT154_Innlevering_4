@@ -20,14 +20,13 @@ namespace DesktopWPFHotel
     /// </summary>
     public partial class RoomInfo : Window
     {
-        private hotelEntities1 hcx = new hotelEntities1();
 
         public RoomInfo()
         {
             InitializeComponent();
         }
 
-        public RoomInfo(hotelEntities1 hcx)
+        public RoomInfo(HotelContext hcx)
         {
             InitializeComponent();
         }

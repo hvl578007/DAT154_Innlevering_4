@@ -20,14 +20,12 @@ namespace DesktopWPFHotel
     /// </summary>
     public partial class ReservationsWindow : Window
     {
-        private hotelEntities1 hcx = new hotelEntities1();
-
         public ReservationsWindow()
         {
             InitializeComponent();
         }
 
-        public ReservationsWindow(hotelEntities1 hcx)
+        public ReservationsWindow(HotelContext hcx)
         {
             InitializeComponent();
             

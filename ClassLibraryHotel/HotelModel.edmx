@@ -102,7 +102,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Reservations">
+        <EntityType Name="Reservation">
           <Key>
             <PropertyRef Name="ReservationId" />
           </Key>
@@ -113,10 +113,10 @@
           <Property Name="CheckedOut" Type="Boolean" Nullable="false" />
           <Property Name="RoomRoomId" Type="Int32" Nullable="false" />
           <Property Name="UserUsername" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Rooms" Relationship="Self.FK_RoomReservation" FromRole="Reservations" ToRole="Rooms" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_UserReservation" FromRole="Reservations" ToRole="Users" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_RoomReservation" FromRole="Reservations" ToRole="Rooms" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserReservation" FromRole="Reservations" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Rooms">
+        <EntityType Name="Room">
           <Key>
             <PropertyRef Name="RoomId" />
           </Key>
@@ -126,7 +126,7 @@
           <NavigationProperty Name="Reservations" Relationship="Self.FK_RoomReservation" FromRole="Rooms" ToRole="Reservations" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_RoomTask" FromRole="Rooms" ToRole="Tasks" />
         </EntityType>
-        <EntityType Name="Tasks">
+        <EntityType Name="Task">
           <Key>
             <PropertyRef Name="TaskId" />
           </Key>
@@ -136,9 +136,9 @@
           <Property Name="State" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="RoomRoomId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Rooms" Relationship="Self.FK_RoomTask" FromRole="Tasks" ToRole="Rooms" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_RoomTask" FromRole="Tasks" ToRole="Rooms" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="Username" />
           </Key>
@@ -147,8 +147,8 @@
           <NavigationProperty Name="Reservations" Relationship="Self.FK_UserReservation" FromRole="Users" ToRole="Reservations" />
         </EntityType>
         <Association Name="FK_RoomReservation">
-          <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
-          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rooms">
               <PropertyRef Name="RoomId" />
@@ -159,8 +159,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserReservation">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Username" />
@@ -171,8 +171,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RoomTask">
-          <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
-          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Task" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rooms">
               <PropertyRef Name="RoomId" />
@@ -182,11 +182,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="hotelEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Reservations" EntityType="Self.Reservations" />
-          <EntitySet Name="Rooms" EntityType="Self.Rooms" />
-          <EntitySet Name="Tasks" EntityType="Self.Tasks" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
+        <EntityContainer Name="HotelContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_RoomReservation" Association="Self.FK_RoomReservation">
             <End Role="Rooms" EntitySet="Rooms" />
             <End Role="Reservations" EntitySet="Reservations" />
@@ -205,9 +205,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HotelModelStoreContainer" CdmEntityContainer="hotelEntities1">
+        <EntityContainerMapping StorageEntityContainer="HotelModelStoreContainer" CdmEntityContainer="HotelContext">
           <EntitySetMapping Name="Reservations">
-            <EntityTypeMapping TypeName="HotelModel.Reservations">
+            <EntityTypeMapping TypeName="HotelModel.Reservation">
               <MappingFragment StoreEntitySet="Reservations">
                 <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
                 <ScalarProperty Name="DateStart" ColumnName="DateStart" />
@@ -220,7 +220,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rooms">
-            <EntityTypeMapping TypeName="HotelModel.Rooms">
+            <EntityTypeMapping TypeName="HotelModel.Room">
               <MappingFragment StoreEntitySet="Rooms">
                 <ScalarProperty Name="RoomId" ColumnName="RoomId" />
                 <ScalarProperty Name="NumOfBeds" ColumnName="NumOfBeds" />
@@ -229,7 +229,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="HotelModel.Tasks">
+            <EntityTypeMapping TypeName="HotelModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
                 <ScalarProperty Name="TaskId" ColumnName="TaskId" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
@@ -241,7 +241,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="HotelModel.Users">
+            <EntityTypeMapping TypeName="HotelModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -262,7 +262,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

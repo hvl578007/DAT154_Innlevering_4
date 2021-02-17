@@ -12,7 +12,7 @@ namespace ClassLibraryHotel
     using System;
     using System.Collections.Generic;
     
-    public partial class Tasks
+    public partial class Task
     {
         public int TaskId { get; set; }
         public string Note { get; set; }
@@ -21,6 +21,6 @@ namespace ClassLibraryHotel
         public int Type { get; set; }
         public int RoomRoomId { get; set; }
     
-        public virtual Rooms Rooms { get; set; }
+        public virtual Room Room { get; set; }
     }
 }
