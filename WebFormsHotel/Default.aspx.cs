@@ -21,7 +21,11 @@ namespace WebFormsHotel
 
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            //TODO - lag ny bruker og legg denne brukeren til i databasen. 
+            User usr = new User();
+            usr.Name = Name.Text.ToString();
+            usr.Username = NewUserName.Text.ToString();
+            //TODO - legg denne brukeren til i databasen. 
+        
         }
     }
 }

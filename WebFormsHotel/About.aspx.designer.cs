@@ -13,5 +13,32 @@ namespace WebFormsHotel
 
     public partial class About
     {
+
+        /// <summary>
+        /// BookingsGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView BookingsGrid;
+
+        /// <summary>
+        /// BookingCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar BookingCalendar;
+
+        /// <summary>
+        /// BookingBTN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BookingBTN;
     }
 }
