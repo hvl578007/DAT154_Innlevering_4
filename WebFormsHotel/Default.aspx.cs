@@ -13,5 +13,15 @@ namespace WebFormsHotel
         {
 
         }
+
+        protected void Login_Click(object sender, EventArgs e)
+        {
+            //TODO - koble seg opp mot databasen og sjekk om brukeren finnes
+        }
+
+        protected void CreateUser_Click(object sender, EventArgs e)
+        {
+            //TODO - lag ny bruker og legg denne brukeren til i databasen. 
+        }
     }
 }

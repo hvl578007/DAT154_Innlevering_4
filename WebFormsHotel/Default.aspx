@@ -11,23 +11,23 @@
             </p>
         </div>
 
-        <div class="col-md-4">
+        <div class="row">
         <!-- Logger inn eksisterende bruker. må koble seg opp mot databasen og finne brukeren -->
+            <h3>Log In</h3>
             <fieldset>
                 <asp:TextBox ID="UserName" Text="User name" runat="server"></asp:TextBox>
+                <asp:Button ID="LoginButton" Text="Log In" OnClick="Login_Click" runat="server"></asp:Button>
             </fieldset>
          </div>
 
-                <asp:Button ID="LoginButton" Text="Log In" OnClick="Login_Click" runat="server"></asp:Button>
-
-        <div class="col-md-4">
+        <div class="row">
         <!-- Lager Ny bruker. må koble seg opp mot databasen og legge til bruker -->
             <h3>Create New User</h3>
              <fieldset>
-                <asp:TextBox ID="Name" Text="Name" runat="server"></asp:TextBox>
-                <asp:TextBox ID="NewUserName" Text="New User name" runat="server"></asp:TextBox>
+                 <asp:TextBox ID="Name" Text="Name" runat="server"></asp:TextBox>
+                 <asp:TextBox ID="NewUserName" Text="New User name" runat="server"></asp:TextBox>
+                 <asp:Button ID="CreateUser" Text="Create User" OnClick="CreateUser_Click" runat="server"></asp:Button>
             </fieldset>
-                <asp:Button ID="CreateUser" Text="Create User" OnClick="Login_Click" runat="server"></asp:Button>
         </div>
     </div>
 
