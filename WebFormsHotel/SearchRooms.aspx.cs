@@ -13,14 +13,13 @@ namespace WebFormsHotel
     {
         HotelContext hcx = new HotelContext();
 
+        private User user = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            hcx.Users.Load();
-            string username = HttpContext.Current.Session["UsernameSession"].ToString();
-            var usr = hcx.Users.Local.FirstOrDefault(u => u.Username.Equals(username)); //todo må hente!
-            //u = hcx.Users.Local.Find(u => u.UserName.Equals(userName));
-            //må vise alle reservasjonar på brukaren
-            if (usr == null)
+            User user = WebLoginHelper.CheckIfInloggedSession(Session, hcx);
+            
+            if (user == null)
             {
                 Response.Redirect("Default.aspx");
             }
@@ -119,7 +118,7 @@ namespace WebFormsHotel
                 dateStart = dateEnd;
                 dateEnd = tmp;
             }
-            string username = HttpContext.Current.Session["UsernameSession"].ToString();
+            string username = Session["UsernameSession"].ToString();
             //GridViewRooms.SelectedRow;
             //må hente ut og lage reservasjon
             int roomid = int.Parse(GridViewRooms.Rows[e.RowIndex].Cells[1].Text);

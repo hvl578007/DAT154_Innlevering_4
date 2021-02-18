@@ -15,16 +15,14 @@ namespace WebFormsHotel
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            hcx.Users.Load();
-            string username = HttpContext.Current.Session["UsernameSession"].ToString();
-            var usr = hcx.Users.Local.FirstOrDefault(u => u.Username.Equals(username)); //todo må hente!
-            //u = hcx.Users.Local.Find(u => u.UserName.Equals(userName));
-            //må vise alle reservasjonar på brukaren
-            if (usr != null)
+            User user = WebLoginHelper.CheckIfInloggedSession(Session, hcx);
+
+            if (user != null)
             {
+                WelcomeLabel.Text = "Welcome " + user.Name + "!";
                 hcx.Reservations.Load(); //?
 
-                GridView1.DataSource = (usr as User).Reservations;
+                GridView1.DataSource = user.Reservations;
                 GridView1.DataBind();
             }
             else

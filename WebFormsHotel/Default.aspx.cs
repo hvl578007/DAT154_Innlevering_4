@@ -22,11 +22,11 @@ namespace WebFormsHotel
         {
             // koble seg opp mot databasen og sjekk om brukeren finnes
             string usrName = UserName.Text.ToString();
-            hcx.Users.Load();
+            //hcx.Users.Load();
 
-            var usrVar = hcx.Users.Local.FirstOrDefault(u => u.Username.Equals(usrName));
+            //var usrVar = hcx.Users.Local.FirstOrDefault(u => u.Username.Equals(usrName));
             
-            if (usrVar != null)
+            if (WebLoginHelper.CheckIfUsernameExists(usrName, hcx))
             {
                 HttpContext.Current.Session["UsernameSession"] = usrName;
                 Response.Redirect("LoggedIn2.aspx");
@@ -42,17 +42,20 @@ namespace WebFormsHotel
         protected void CreateUser_Click(object sender, EventArgs e)
         {
             //TODO - lag ny bruker og legg denne brukeren til i databasen. 
-            User u = new User { Username = NewUserName.Text.ToString(), Name = Name.Text.ToString() };
+            string username = NewUserName.Text;
+            bool usernameExists = WebLoginHelper.CheckIfUsernameExists(username, hcx);
+            User u = new User { Username = username, Name = Name.Text };
 
-            var usrVar = hcx.Users.Local.FirstOrDefault(usr => usr.Equals(u));
+            //var usrVar = hcx.Users.Local.FirstOrDefault(usr => usr.Equals(u));
 
-            if (usrVar == null)
+            if (!usernameExists)
             {
                 hcx.Users.Add(u);
                 hcx.SaveChanges();
 
-                HttpContext.Current.Session["UsernameSession"] = NewUserName.Text.ToString();
-                Response.Redirect("LoggedIn.aspx");
+                WebLoginHelper.SetUsernameInSession(Session, username);
+                //HttpContext.Current.Session["UsernameSession"] = NewUserName.Text;
+                Response.Redirect("LoggedIn2.aspx");
             }
             else
             {

@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div style="width:100%">
         <div style="float:left; width:30%">
-            <div style="float:left; width:50%">
+            <div style="float:left; width:48%">
                 <br />
                 <asp:Label ID="Label4" runat="server" Text="Date from:"></asp:Label>
                 <asp:Calendar ID="CalendarFrom" runat="server"></asp:Calendar>
@@ -17,7 +17,7 @@
                     <asp:ListItem Value="5">5 (error)</asp:ListItem>
                 </asp:DropDownList>
             </div>
-            <div style="float:right; width:49%">
+            <div style="float:left; width:48%">
                 <br />
                 <asp:Label ID="Label5" runat="server" Text="Date to:"></asp:Label>
                 <asp:Calendar ID="CalendarTo" runat="server"></asp:Calendar>
@@ -25,9 +25,9 @@
                 <asp:Label ID="Label2" runat="server" Text="Quality:"></asp:Label>
                 <br />
                 <asp:RadioButtonList ID="RadioQuality" runat="server">
-                    <asp:ListItem Value="0" Selected="True">Ok</asp:ListItem>
-                    <asp:ListItem Value="1">Good</asp:ListItem>
-                    <asp:ListItem Value="2">Amazing</asp:ListItem>
+                    <asp:ListItem Value="0" Selected="True">Ok (0)</asp:ListItem>
+                    <asp:ListItem Value="1">Good (1)</asp:ListItem>
+                    <asp:ListItem Value="2">Amazing (2)</asp:ListItem>
                 </asp:RadioButtonList>
             </div>
             <br />
@@ -36,10 +36,24 @@
         <div style="float:right; width:70%">
             <br />
             <asp:Label ID="Label3" runat="server" Text="Avaliable rooms"></asp:Label>
-            <asp:GridView ID="GridViewRooms" runat="server" OnSelectedIndexChanged="GridViewRooms_SelectedIndexChanged" OnRowUpdating="GridViewRooms_RowUpdating">
+            <asp:GridView ID="GridViewRooms" runat="server" OnSelectedIndexChanged="GridViewRooms_SelectedIndexChanged" OnRowUpdating="GridViewRooms_RowUpdating" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:ButtonField ButtonType="Button" CommandName="Update" HeaderText="BookButton" ShowHeader="True" Text="Book" />
+                    <asp:ButtonField ButtonType="Button" CommandName="Update" HeaderText="" ShowHeader="True" Text="Book" />
+                    <asp:BoundField DataField="RoomId" HeaderText="Room nr" />
+                    <asp:BoundField DataField="NumOfBeds" HeaderText="Beds" />
+                    <asp:BoundField DataField="Size" HeaderText="Quality" />
                 </Columns>
+                <EditRowStyle BackColor="#999999" />
+                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
             <asp:Button ID="SelectReservation" runat="server" Text="Book" OnClick="SelectReservation_Click" Visible="false" />
         </div>

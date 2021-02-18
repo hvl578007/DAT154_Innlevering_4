@@ -156,6 +156,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="HotelModel.edmx.sql" />
     <Content Include="LoggedIn2.aspx" />
+    <Content Include="ReceiptReservation.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -234,6 +235,13 @@
       <DependentUpon>LoggedIn2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiptReservation.aspx.cs">
+      <DependentUpon>ReceiptReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReceiptReservation.aspx.designer.cs">
+      <DependentUpon>ReceiptReservation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SearchRooms.aspx.cs">
       <DependentUpon>SearchRooms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
