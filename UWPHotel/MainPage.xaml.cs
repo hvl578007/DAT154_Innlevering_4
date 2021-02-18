@@ -25,6 +25,25 @@ namespace UWPHotel
         public MainPage()
         {
             this.InitializeComponent();
+            CleaningButton.Click += CleaningButton_Click;
+            ServiceButton.Click += ServiceButton_Click;
+            MaintenanceButton.Click += MaintenanceButton_Click;
         }
+
+        private void MaintenanceButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TaskOverviewPage), 2);
+        }
+
+        private void ServiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TaskOverviewPage), 1);
+        }
+
+        private void CleaningButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TaskOverviewPage), 0);
+        }
+
     }
 }

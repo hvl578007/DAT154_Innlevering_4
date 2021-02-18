@@ -9,6 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Button Name="CleaningButton" Content="Cleaning Service" Margin="445,135,0,0" VerticalAlignment="Top" Width="400" FontSize="40" Height="100"/>
+        <Button Name="ServiceButton" Content="Room Service" Height="100" Width="400" VerticalAlignment="Top" FontSize="40" Margin="445,310,0,0"/>
+        <Button Name="MaintenanceButton" Content="Maintenance Service" Margin="445,483,0,0" Height="100" Width="400" VerticalAlignment="Top" FontSize="40"/>
 
     </Grid>
 </Page>
