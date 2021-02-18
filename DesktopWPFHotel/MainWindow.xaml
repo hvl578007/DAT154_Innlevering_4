@@ -7,6 +7,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
-    </Grid>
+		<StackPanel Name="BTNStack">
+			<!--Må lage knapper og textbokser-->
+			
+			<!--søk på brukernavn-->
+			<Grid>
+				<TextBox Name="UserName"></TextBox>
+				<Button Name="UserNameBTN" Content="Search"></Button>
+			</Grid>
+
+			<!--søk på romnummer-->
+			<Grid>
+				<TextBox Name="RoomNr"></TextBox>
+				<Button Name="RoomNrBTN" Content="Search"></Button>
+			</Grid>
+			
+			
+			<Button Name="AllRoms" Click="Reservation_Button" Content="See All Rooms"></Button>
+		    <Button Name="NyRes" Click="Reservation_Button" Content="Ny Reservasjon"></Button>
+		</StackPanel>
+	</Grid>
 </Window>

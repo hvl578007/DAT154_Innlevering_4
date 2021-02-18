@@ -9,31 +9,32 @@ using ClassLibraryHotel;
 
 namespace WebFormsHotel
 {
-    public partial class _Default : Page
+    public partial class DefaultNy : System.Web.UI.Page
     {
-        HotelContext hcx = new HotelContext();
+
+        private HotelContext hcx = new HotelContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void Login_Click(object sender, EventArgs e)
         {
             // koble seg opp mot databasen og sjekk om brukeren finnes
             string usrName = UserName.Text.ToString();
-            hcx.Users.Load();
+            DbSet<User> users = hcx.Users;
 
-            var usrVar = hcx.Users.Local.FirstOrDefault(u => u.Username.Equals(usrName));
-            
+            var usrVar = hcx.Users.Local.Where(u => u.Username.Equals(usrName));
+
             if (usrVar != null)
             {
                 HttpContext.Current.Session["UsernameSession"] = usrName;
-                Response.Redirect("LoggedIn2.aspx");
+                Response.Redirect("LoggedIn.aspx");
             }
             else
             {
-                //feilmelding: bruker finnes ikke hallo
+                //feilmelding: bruker finnes ikke
                 UserNotExists.Visible = true;
             }
 
@@ -44,7 +45,7 @@ namespace WebFormsHotel
             //TODO - lag ny bruker og legg denne brukeren til i databasen. 
             User u = new User { Username = NewUserName.Text.ToString(), Name = Name.Text.ToString() };
 
-            var usrVar = hcx.Users.Local.FirstOrDefault(usr => usr.Equals(u));
+            var usrVar = hcx.Users.Local.Where(usr => usr.Equals(u));
 
             if (usrVar == null)
             {
@@ -58,7 +59,6 @@ namespace WebFormsHotel
             {
                 //feilmelding: bruker finnes allerede
                 UserExists.Visible = true;
-                //ny
             }
 
         }

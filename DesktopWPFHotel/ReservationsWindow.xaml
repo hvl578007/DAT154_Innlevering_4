@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="ReservationsWindow" Height="450" Width="800">
     <Grid>
-        
+		<Label Content="Hotel name here" HorizontalAlignment="Left" Margin="32,18,0,0" VerticalAlignment="Top" Height="29" Width="108"/>
+		<Label Content="Reservations:" HorizontalAlignment="Left" Margin="32,50,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

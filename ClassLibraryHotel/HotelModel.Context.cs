@@ -18,7 +18,7 @@ namespace ClassLibraryHotel
         public HotelContext()
             : base("name=HotelContext")
         {
-            Database.SetInitializer<HotelContext>(new HotelInitializer());
+            //Database.SetInitializer<HotelContext>(new HotelInitializer());
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

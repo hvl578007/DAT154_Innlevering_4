@@ -11,7 +11,7 @@ namespace WebFormsHotel
 {
 
 
-    public partial class _Default
+    public partial class DefaultNy
     {
 
         /// <summary>

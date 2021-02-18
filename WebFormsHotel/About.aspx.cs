@@ -9,12 +9,11 @@ namespace WebFormsHotel
 {
     public partial class About : Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //hallo guddi!!!
 
             //BookingsGrid = //TODO - hent bookings for brukeren fra databasen 
-
             
         }
 
