@@ -43,12 +43,33 @@ namespace DesktopWPFHotel
 
         private void Reservation_Button(object sender, RoutedEventArgs e)
         {
+            if (validateForm())
+            { 
             new ReservationsWindow(hcx);
+            }
         }
 
         private void RoomInfo_Button(object sender, RoutedEventArgs e)
         {
             new RoomInfo(hcx);
+        }
+
+        private void newRes_Button(object sender, RoutedEventArgs e)
+        {
+            new SearchRooms(hcx);
+        }
+
+        private bool validateForm()
+        {
+            bool output = true;
+            // legge til flere?
+
+            if (userNameText.Text.Length <= 2 || userNameText.Text.Length > 14)
+            {
+                output = false;
+            }
+
+            return output;
         }
     }
 }

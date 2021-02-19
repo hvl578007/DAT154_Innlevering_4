@@ -10,8 +10,8 @@
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false">
         <Columns>
             <asp:BoundField DataField="ReservationId" HeaderText="Reservation num " />
-            <asp:BoundField DataField="DateStart" HeaderText="Date start" />
-            <asp:BoundField DataField="DateEnd" HeaderText="Date end" />
+            <asp:BoundField DataField="DateStart" HeaderText="Date start" DataFormatString="{0:dd/MM/yyyy}" />
+            <asp:BoundField DataField="DateEnd.Date" HeaderText="Date end" DataFormatString="{0:dd/MM/yyyy}" />
             <asp:BoundField DataField="CheckedIn" HeaderText="Checked in?" />
             <asp:BoundField DataField="CheckedOut" HeaderText="Checked out?" />
             <asp:BoundField DataField="RoomRoomId" HeaderText="Room num" />
