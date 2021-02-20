@@ -5,73 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="HotelModel.Context.tt" />
-    <None Remove="HotelModel.edmx" />
-    <None Remove="HotelModel.tt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="HotelModel.Context.tt">
-      <DependentUpon>HotelModel.edmx</DependentUpon>
-      <LastGenOutput>HotelModel.Context.cs</LastGenOutput>
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </Content>
-    <Content Include="HotelModel.tt">
-      <DependentUpon>HotelModel.edmx</DependentUpon>
-      <LastGenOutput>HotelModel.cs</LastGenOutput>
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EntityDeploy Include="HotelModel.edmx">
-      <LastGenOutput>HotelModel.Designer.cs</LastGenOutput>
-      <Generator>EntityModelCodeGenerator</Generator>
-    </EntityDeploy>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibraryHotel\ClassLibraryHotel.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="HotelModel.Context.cs">
-      <DependentUpon>HotelModel.Context.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="HotelModel.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="HotelModel.Designer.cs">
-      <DependentUpon>HotelModel.edmx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Reservation.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Room.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Task.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Update="User.cs">
-      <DependentUpon>HotelModel.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="HotelModel.edmx.diagram">
-      <DependentUpon>HotelModel.edmx</DependentUpon>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
