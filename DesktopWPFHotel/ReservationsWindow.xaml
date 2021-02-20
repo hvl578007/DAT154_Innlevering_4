@@ -7,7 +7,24 @@
         mc:Ignorable="d"
         Title="ReservationsWindow" Height="450" Width="800">
     <Grid>
-		<Label Content="Hotel name here" HorizontalAlignment="Left" Margin="32,18,0,0" VerticalAlignment="Top" Height="29" Width="108"/>
-		<Label Content="Reservations:" HorizontalAlignment="Left" Margin="32,50,0,0" VerticalAlignment="Top"/>
+        <Label Content="Exelence Hotel" HorizontalAlignment="Left" Margin="32,18,0,0" VerticalAlignment="Top" Height="29" Width="108"/>
+        <Label Content="Reservations:" HorizontalAlignment="Left" Margin="32,50,0,0" VerticalAlignment="Top"/>
+        
+        <ListView HorizontalAlignment="Left" Height="357" Margin="130,52,0,0" VerticalAlignment="Top" Width="652">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" Header="Reservation Num"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Name"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="RomNr"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Date Start"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Date End"></GridViewColumn>
+                    <GridViewColumn Width="60" Header="Check In">
+                        <!--en knapp for å sjekke in?-->
+                    </GridViewColumn>
+                    <GridViewColumn Width="60" Header="Chek out"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Window>
