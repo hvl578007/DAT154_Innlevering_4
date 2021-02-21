@@ -9,6 +9,7 @@
 
 namespace ClassLibraryHotel
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -21,6 +22,7 @@ namespace ClassLibraryHotel
         public int Type { get; set; }
         public int RoomRoomId { get; set; }
     
+        [JsonIgnore]
         public virtual Room Room { get; set; }
     }
 }
