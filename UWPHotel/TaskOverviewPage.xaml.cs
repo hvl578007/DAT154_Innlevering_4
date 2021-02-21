@@ -28,108 +28,101 @@ namespace UWPHotel
     {
         private TaskType type;
         private int id = -1;
-        private HttpClient client;
         private string baseUri = "http://localhost:49689/api";
-        List<Object> tasks;
-        List<HotelTask> hotelTasks;
+        private Uri getTasksUri = new Uri("http://localhost:49689/api/Tasks");
+
+        List<HotelTaskUWP> tasks;
 
         public TaskOverviewPage()
         {
             this.InitializeComponent();
-            
-            //REST API / WEB API hente tasks - TODO!
-            /*
-            client = new HttpClient();
 
-            var response = "";
-            System.Threading.Tasks.Task task = System.Threading.Tasks.Task.Run(async () =>
-            {
-                response = await client.GetStringAsync(new Uri(baseUri + "/Tasks"));
-            });
-            task.Wait();
-            List<HotelTask> hotelTasks = JsonConvert.DeserializeObject<List<HotelTask>>(response);
-
-            //om ein seier at ein har fått alle tasks nå...
-            List<HotelTask> newTasks = hotelTasks.Where(t => t.Type == id).ToList();
-            */
-
-            hotelTasks = makeDummyTasks();
-            var onlyForThisTasks = hotelTasks.Where(t => t.Type == (int)type);
-            //connect tasks to gridview etc!
-            TaskList.ItemsSource = onlyForThisTasks;
-            //TaskList.ItemClick += TaskList_ItemClick;
+            //set opp litt events
             TaskList.SelectionChanged += TaskList_SelectionChanged;
-            TaskList.IsItemClickEnabled = true;
+
+            ComboTaskState.SelectionChanged += ComboTaskState_SelectionChanged;
+        }
+
+        private void ComboTaskState_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateTaskButton.Visibility = Visibility.Visible;
         }
 
         private void TaskList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ContentGrid.Visibility == Visibility.Collapsed) ContentGrid.Visibility = Visibility.Visible;
-            var selectedItem = (sender as ListView).SelectedItem as HotelTask;
-            TextTaskInfo.Text = ((sender as ListView).SelectedItem as HotelTask).Info;
-            TextTaskState.Text = ((TaskState)selectedItem.State).ToString();
-            TextBoxTaskNotes.Text = selectedItem.Note;
-            ComboTaskState.SelectedIndex = -1;
-        }
-
-        private void TaskList_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            if (ContentGrid.Visibility == Visibility.Collapsed) ContentGrid.Visibility = Visibility.Visible;
-            if (sender is HotelTask) TextTaskInfo.Text = (sender as HotelTask)?.Info;
-            //throw new NotImplementedException();
-        }
-
-        private List<HotelTask> makeDummyTasks()
-        {
-            List<HotelTask> list = new List<HotelTask>
+            if ((sender as ListView).SelectedIndex != -1)
             {
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 1", RoomRoomId=1, TaskId=1, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=20, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=21, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=22, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=23, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=24, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=25, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=26, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=27, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=28, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=29, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=30, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=31, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=32, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=33, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=34, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=35, Note=""},
-                new HotelTask{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=2, Note=""},
-                new HotelTask{Type=(int)TaskType.RoomService, State=0, Info="Dummyinfo roomservice 3", RoomRoomId=1, TaskId=3, Note=""},
-                new HotelTask{Type=(int)TaskType.RoomService, State=0, Info="Dummyinfo roomservice 4", RoomRoomId=2, TaskId=4, Note=""},
-                new HotelTask{Type=(int)TaskType.Maintenace, State=0, Info="Dummyinfo maintenace 5", RoomRoomId=1, TaskId=5, Note=""},
-                new HotelTask{Type=(int)TaskType.Maintenace, State=0, Info="Dummyinfo maintenace 6", RoomRoomId=2, TaskId=6, Note=""}
+                if (ContentGrid.Visibility == Visibility.Collapsed) ContentGrid.Visibility = Visibility.Visible;
+                var selectedItem = (sender as ListView).SelectedItem as HotelTaskUWP;
+                TextTaskInfo.Text = ((sender as ListView).SelectedItem as HotelTaskUWP).Info;
+                TextTaskState.Text = ((TaskState)selectedItem.State).ToString();
+                TextBoxTaskNotes.Text = selectedItem.Note;
+                ComboTaskState.SelectedIndex = -1;
+                UpdateTaskButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        /*
+        private List<HotelTaskUWP> makeDummyTasks()
+        {
+            List<HotelTaskUWP> list = new List<HotelTaskUWP>
+            {
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 1", RoomRoomId=1, TaskId=1, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=20, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=21, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=22, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=23, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=24, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=25, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=26, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=27, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=28, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=29, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=30, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=31, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=32, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=33, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=34, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=35, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.CleaningService, State=0, Info="Dummyinfo Cleaning 2", RoomRoomId=2, TaskId=2, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.RoomService, State=0, Info="Dummyinfo roomservice 3", RoomRoomId=1, TaskId=3, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.RoomService, State=0, Info="Dummyinfo roomservice 4", RoomRoomId=2, TaskId=4, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.Maintenace, State=0, Info="Dummyinfo maintenace 5", RoomRoomId=1, TaskId=5, Note=""},
+                new HotelTaskUWP{Type=(int)TaskType.Maintenace, State=0, Info="Dummyinfo maintenace 6", RoomRoomId=2, TaskId=6, Note=""}
             };
             return list;
         }
+        */
 
-        private async void RefreshTasks()
+        private async Task RefreshTasksOverWebAPI()
         {
             var response = "";
+            using (var httpClient = new HttpClient())
+            {
+                response = await httpClient.GetStringAsync(getTasksUri);
+            }
 
-            response = await client.GetStringAsync(new Uri(baseUri + "/Tasks"));
+            tasks = JsonConvert.DeserializeObject<List<HotelTaskUWP>>(response);
 
-            tasks = JsonConvert.DeserializeObject<List<Object>>(response);
+            TaskList.ItemsSource = tasks?.Where(t => t.Type == (int)type);
+
+            LoadingText.Visibility = Visibility.Collapsed;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            
+            LoadingText.Visibility = Visibility.Visible;
+            ErrorUpdatingText.Visibility = Visibility.Collapsed;
 
-            //RefreshTasks();
+            Task netTask = RefreshTasksOverWebAPI();
+
+            base.OnNavigatedTo(e);
 
             if (this.id != (int)e.Parameter)
             {
                 this.id = (int)e.Parameter;
                 this.type = (TaskType)(int)e.Parameter;
-                TaskList.ItemsSource = hotelTasks.Where(t => t.Type == (int)type);
+
                 switch (type)
                 {
                     case TaskType.CleaningService:
@@ -157,43 +150,34 @@ namespace UWPHotel
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-
+            LoadingText.Visibility = Visibility.Visible;
+            ContentGrid.Visibility = Visibility.Collapsed;
+            Task netTask = RefreshTasksOverWebAPI();
         }
 
         private void UpdateTaskButton_Click(object sender, RoutedEventArgs e)
         {
-
+            HotelTaskUWP taskToBeUpdated = TaskList.SelectedItem as HotelTaskUWP;
+            taskToBeUpdated.State = int.Parse((ComboTaskState.SelectedItem as ComboBoxItem).Tag.ToString());
+            taskToBeUpdated.Note = TextBoxTaskNotes.Text + "";
+            Task<bool> t = UpdateTaskOverWebAPI(taskToBeUpdated);
         }
-    }
 
-    class HotelTask
-    {
-        public int TaskId { get; set; }
-        public string Note { get; set; }
-        public string Info { get; set; }
-        public int State { get; set; }
-        public int Type { get; set; }
-        public int RoomRoomId { get; set; }
-    }
-
-}
-
-/*
-private async Task<string> GetAllTasks()
-{
-    Task<string> ret = null;
-    using (var httpClient = new HttpClient())
-    {
-        try
+        private async Task<bool> UpdateTaskOverWebAPI(HotelTaskUWP ht)
         {
-            ret = new Task<string>(await httpClient.GetStringAsync(new Uri(baseUri + "/Tasks")));
-        }
-        catch (Exception e)
-        {
-            //e.Message;
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.PutAsync(new Uri(baseUri + "/Tasks/" + ht.TaskId.ToString()), new HttpStringContent(JsonConvert.SerializeObject(ht, Formatting.Indented), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json"));
+                if (!response.IsSuccessStatusCode)
+                {
+                    ErrorUpdatingText.Visibility = Visibility.Visible;
+                    return false;
+                } else
+                {
+                    TaskList_SelectionChanged(TaskList, null);
+                    return true;
+                }
+            }
         }
     }
-    //string result = await client.GetStringAsync(new Uri(baseUri + "/Tasks"));
-    return ret;
 }
-*/
