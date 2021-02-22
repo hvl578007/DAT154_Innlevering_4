@@ -40,7 +40,6 @@
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:ButtonField ButtonType="Button" CommandName="Update" HeaderText="" ShowHeader="True" Text="Book" />
-                    <asp:BoundField DataField="RoomId" HeaderText="Room nr" />
                     <asp:BoundField DataField="NumOfBeds" HeaderText="Beds" />
                     <asp:BoundField DataField="Size" HeaderText="Quality" />
                 </Columns>

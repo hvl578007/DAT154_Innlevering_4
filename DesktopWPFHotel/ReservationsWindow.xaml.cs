@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,17 @@ namespace DesktopWPFHotel
         public ReservationsWindow(HotelContext hcx)
         {
             InitializeComponent();
+
+            hcx.Reservations.Load();
+            var res = hcx.Reservations;
+
             
+
+            //foreach(Reservation r in res)
+            //{
+
+            //}
+
         }
     }
 }

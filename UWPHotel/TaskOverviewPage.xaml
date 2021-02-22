@@ -9,11 +9,66 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Name="WelcomeText" HorizontalAlignment="Left" Margin="30,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30"/>
-
-        <GridView Name="GridView">
-        </GridView>
-
-        <Button Name="GoBackButton" Margin="30,665,0,0" Content="Go back" VerticalAlignment="Top" Click="GoBackButton_Click"/>
+        <TextBlock Name="WelcomeText" Text="Welcome" HorizontalAlignment="Left" Margin="30,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30"/>
+        <TextBlock Name="LoadingText" Text="Loading from database..." Margin="30,75,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <SplitView Name="SplitView" Margin="0,100,0,100" DisplayMode="Inline" IsPaneOpen="True">
+            <SplitView.Pane>
+                <ListView Name="TaskList" Margin="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:HotelTaskUWP">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Grid.Column="0" Grid.RowSpan="2" Width="32" Height="32" Fill="Aqua" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{x:Bind Info}" Margin="12,6,0,0" Style="{ThemeResource BaseTextBlockStyle}"/>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Margin="12,0,0,6" Style="{ThemeResource BodyTextBlockStyle}">
+                                    Room number: <Run Text="{x:Bind RoomRoomId}" />
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid Name="ContentGrid" Visibility="Collapsed" Margin="50,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock>
+                            <Bold>Task info:</Bold>
+                        </TextBlock>
+                        <TextBlock Name="TextTaskInfo" Text="Dummyinfo"></TextBlock>
+                        <TextBlock>
+                            <Bold>State:</Bold>
+                        </TextBlock>
+                        <TextBlock Name="TextTaskState"></TextBlock>
+                        <TextBlock>
+                            Change state:
+                        </TextBlock>
+                        <ComboBox Name="ComboTaskState">
+                            <ComboBoxItem Content="In progress" Tag="1"/>
+                            <ComboBoxItem Content="Finished" Tag="2"/>
+                        </ComboBox>
+                        <TextBox Name="TextBoxTaskNotes" Width="500" Height="300" Header="Notes:" PlaceholderText="Type your notes here" AcceptsReturn="True" TextWrapping="Wrap" MaxLength="2000"/>
+                        <Button Name="UpdateTaskButton" Content="Update task to database" Click="UpdateTaskButton_Click" Visibility="Collapsed"/>
+                        <TextBlock Name="ErrorUpdatingText" Text="There was an error updating the task..." Visibility="Collapsed"/>
+                    </StackPanel>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+        <Button Name="GoBackButton" Margin="30,0,0,30" Content="Go back" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="GoBackButton_Click"/>
+        <Button Name="RefreshButton" Margin="0,0,30,30" Content="Refresh tasks" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="RefreshButton_Click"/>
     </Grid>
 </Page>

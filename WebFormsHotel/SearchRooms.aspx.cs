@@ -13,7 +13,7 @@ namespace WebFormsHotel
     {
         HotelContext hcx = new HotelContext();
 
-        private User user = null;
+        //private User user = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,9 +38,12 @@ namespace WebFormsHotel
                 dateStart = dateEnd;
                 dateEnd = tmp;
             }
-            else if (dateEnd.CompareTo(dateStart) == 0)
+            else if (dateEnd.CompareTo(dateStart) == 0 || dateEnd == DateTime.MinValue || dateStart == DateTime.MinValue)
             {
                 //lik dato... validator??
+                //error message etc...
+                Response.Redirect("SearchRooms.aspx");
+                return;
             }
 
             int beds = int.Parse(DropDownBeds.SelectedValue); //todo exception!!
@@ -53,9 +56,10 @@ namespace WebFormsHotel
             //finst før: rDS < DS && rDE < DS
             //finst etter: rDS > DE && rDE > DE
 
-            hcx.Rooms.Load();
-            hcx.Reservations.Load();
-            var avaliableRooms = hcx.Rooms.Local
+            
+            List<Room> avaliableRooms = HotelController.RetrieveAvaliableRooms(hcx, beds, quality, dateStart, dateEnd);
+            /*
+            avaliableRooms = hcx.Rooms.Local
                 .Where(r => r.NumOfBeds >= beds && r.Size >= quality)
                 .Where(r =>
             {
@@ -70,16 +74,35 @@ namespace WebFormsHotel
                 //var obj = r.Reservations.FirstOrDefault(res => !res.CheckedOut);
                 //return obj == null;
             }).ToList();
+            */
 
-            if (avaliableRooms != null || avaliableRooms.Count > 0)
+            //todo endre size til quality med tekst?? Quality = ChangeSizeToText(x.size)
+            var distinctRoomTypes = avaliableRooms.Select(x => new { x.NumOfBeds, x.Size }).Distinct().OrderBy(x => x.NumOfBeds).ThenBy(x => x.Size);
+
+            if (distinctRoomTypes != null || distinctRoomTypes.Count() > 0)
             {
-                GridViewRooms.DataSource = avaliableRooms;
+                GridViewRooms.DataSource = distinctRoomTypes;
                 GridViewRooms.DataBind();
             } else
             {
 
             }
 
+        }
+
+        private string ChangeSizeToText(int size)
+        {
+            switch (size)
+            {
+                case 0:
+                    return "Ok";
+                case 1:
+                    return "Good";
+                case 2:
+                    return "Amazing";
+                default:
+                    return "error";
+            }
         }
 
         protected void GridViewRooms_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,6 +132,7 @@ namespace WebFormsHotel
 
         protected void GridViewRooms_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            //todo sjekk datoar!!!
             DateTime dateStart = CalendarFrom.SelectedDate;
             DateTime dateEnd = CalendarTo.SelectedDate;
             if (dateEnd.CompareTo(dateStart) < 0)
@@ -118,15 +142,29 @@ namespace WebFormsHotel
                 dateStart = dateEnd;
                 dateEnd = tmp;
             }
-            string username = Session["UsernameSession"].ToString();
+            string username = WebLoginHelper.GetUsernameFromSession(Session);
+            //string username = Session["UsernameSession"].ToString();
             //GridViewRooms.SelectedRow;
             //må hente ut og lage reservasjon
-            int roomid = int.Parse(GridViewRooms.Rows[e.RowIndex].Cells[1].Text);
-            Reservation res = new Reservation { CheckedIn = false, CheckedOut = false, DateStart = dateStart, DateEnd = dateEnd, RoomRoomId = roomid, UserUsername = username };
-            hcx.Reservations.Add(res);
-            hcx.SaveChanges();
+            //int roomid = int.Parse(GridViewRooms.Rows[e.RowIndex].Cells[1].Text);
+            int numOfBeds = int.Parse(GridViewRooms.Rows[e.RowIndex].Cells[1].Text);
+            int sizeOfRoom = int.Parse(GridViewRooms.Rows[e.RowIndex].Cells[2].Text);
 
-            Response.Redirect("LoggedIn2.aspx");
+            //søke etter første ledige rom
+            Room room = HotelController.RetrieveAvaliableRooms(hcx, numOfBeds, sizeOfRoom, dateStart, dateEnd).FirstOrDefault(r => r.NumOfBeds == numOfBeds && r.Size == sizeOfRoom);
+            //burde oppdatere romma som er ledige i tilfelle nokon trykker på likt
+            if (room == null || dateStart == DateTime.MinValue || dateEnd == DateTime.MinValue)
+            {
+                //error message??
+            } else
+            {
+                Reservation res = new Reservation { CheckedIn = false, CheckedOut = false, DateStart = dateStart, DateEnd = dateEnd, RoomRoomId = room.RoomId, UserUsername = username };
+                hcx.Reservations.Add(res);
+                hcx.SaveChanges();
+
+                //TODO kvittering?
+                Response.Redirect("LoggedIn2.aspx");
+            }
         }
     }
 }

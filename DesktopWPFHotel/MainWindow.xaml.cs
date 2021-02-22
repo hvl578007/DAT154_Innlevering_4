@@ -57,8 +57,10 @@ namespace DesktopWPFHotel
 
         private void Reservation_Button(object sender, RoutedEventArgs e)
         {
+            if (validateForm())
+            { 
             new ReservationsWindow(hcx).Show();
-            this.Close();
+            }
         }
 
         private void RoomInfo_Button(object sender, RoutedEventArgs e)
@@ -70,6 +72,24 @@ namespace DesktopWPFHotel
         private void AllRoms_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void newRes_Button(object sender, RoutedEventArgs e)
+        {
+            new SearchRooms(hcx);
+        }
+
+        private bool validateForm()
+        {
+            bool output = true;
+            // legge til flere?
+
+            if (userNameText.Text.Length <= 2 || userNameText.Text.Length > 14)
+            {
+                output = false;
+            }
+
+            return output;
         }
     }
 }
