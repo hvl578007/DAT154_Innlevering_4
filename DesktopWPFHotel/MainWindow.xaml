@@ -1,51 +1,10 @@
-﻿<Window x:Class="DesktopWPFHotel.MainWindow"
+﻿<NavigationWindow x:Class="DesktopWPFHotel.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopWPFHotel"
         mc:Ignorable="d" FontSize="15"
-        Title="MainWindow" Height="350" Width="450">
-    <Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="20"/>
-			<ColumnDefinition Width="auto"/>
-			<ColumnDefinition Width="auto"/>
-			<ColumnDefinition Width="auto"/>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="20"/>
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="20"/>
-			<RowDefinition Height="auto"/>
-			<RowDefinition Height="auto"/>
-			<RowDefinition Height="auto"/>
-			<RowDefinition Height="auto"/>
-			<RowDefinition Height="auto"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="20"/>
-		</Grid.RowDefinitions>
-
-		<TextBlock Grid.Column="1" Grid.Row="1"  Text="Hotel name here"
-                   FontSize="20" Grid.ColumnSpan="2" Margin="0,0,0,40"/>
-
-		<TextBlock Grid.Column="1" Grid.Row="2" Text="Username:" Margin="0,0,10,0"/>
-		<TextBox x:Name="userNameText" Grid.Column="2" Grid.Row="2" Width="120"/>
-		<Button x:Name="submitButtonUser" Content="Search" Grid.Column="2" Grid.Row="3"
-                Margin="10" Click="Reservation_Button"/>
-
-		<TextBlock Grid.Column="1" Grid.Row="4" Text="Roomnumber:" Margin="0,0,10,0"/>
-		<TextBox x:Name="roomNumberText" Grid.Column="2" Grid.Row="4" Width="120"/>
-		<Button x:Name="submitButtonRoom" Content="Search" Grid.Column="2" Grid.Row="5"
-                Margin="10" Click="RoomInfo_Button"/>
-
-		<TextBlock Grid.Column="3" Grid.Row="2" Text="New reservation:" Margin="10,0,10,0"/>
-		<Button x:Name="submitButtonNew" Content="New" Grid.Column="3" Grid.Row="3"
-                Margin="10" Click="newRes_Button"/>
-
-		<TextBlock Grid.Column="3" Grid.Row="4" Text="All Reservations:" Margin="10,0,10,0"/>
-		<Button x:Name="submitButtonAll" Content="All" Grid.Column="3" Grid.Row="5"
-                Margin="10" Click="Reservation_Button"/>
-		
-	</Grid>
-</Window>
+        Title="DesktopWPFHotel" Height="500" Width="800" Source="MainPage.xaml">
+    
+</NavigationWindow>
