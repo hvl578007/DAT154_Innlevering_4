@@ -79,6 +79,7 @@
     <Compile Include="Room.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="RoomHelper.cs" />
     <Compile Include="Task.cs">
       <DependentUpon>HotelModel.tt</DependentUpon>
     </Compile>

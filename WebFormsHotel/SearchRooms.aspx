@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Search for rooms" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchRooms.aspx.cs" Inherits="WebFormsHotel.SearchRooms" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div style="width:100%">
-        <div style="float:left; width:30%">
-            <div style="float:left; width:48%">
+    <div class="row" style="width:100%">
+        <div style="float:left; width:40%">
+            <div style="float:left; width:46%">
                 <br />
                 <asp:Label ID="Label4" runat="server" Text="Date from:"></asp:Label>
                 <asp:Calendar ID="CalendarFrom" runat="server"></asp:Calendar>
@@ -17,7 +17,7 @@
                     <asp:ListItem Value="5">5 (error)</asp:ListItem>
                 </asp:DropDownList>
             </div>
-            <div style="float:left; width:48%">
+            <div style="float:left; width:46%">
                 <br />
                 <asp:Label ID="Label5" runat="server" Text="Date to:"></asp:Label>
                 <asp:Calendar ID="CalendarTo" runat="server"></asp:Calendar>
@@ -33,10 +33,10 @@
             <br />
             <asp:Button ID="SearchButton" runat="server" Text="Search" OnClick="SearchButton_Click" />
         </div>
-        <div style="float:right; width:70%">
+        <div style="float:right; width:60%">
             <br />
             <asp:Label ID="Label3" runat="server" Text="Avaliable rooms"></asp:Label>
-            <asp:GridView ID="GridViewRooms" runat="server" OnSelectedIndexChanged="GridViewRooms_SelectedIndexChanged" OnRowUpdating="GridViewRooms_RowUpdating" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="GridViewRooms" runat="server" OnSelectedIndexChanged="GridViewRooms_SelectedIndexChanged" OnRowUpdating="GridViewRooms_RowUpdating" OnRowDataBound="GridViewRooms_RowDataBound" AutoGenerateColumns="false" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:ButtonField ButtonType="Button" CommandName="Update" HeaderText="" ShowHeader="True" Text="Book" />

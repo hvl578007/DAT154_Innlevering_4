@@ -1,6 +1,7 @@
 ﻿using ClassLibraryHotel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -148,7 +149,9 @@ namespace WebFormsHotel
             //må hente ut og lage reservasjon
             //int roomid = int.Parse(GridViewRooms.Rows[e.RowIndex].Cells[1].Text);
             int numOfBeds = int.Parse(GridViewRooms.Rows[e.RowIndex].Cells[1].Text);
-            int sizeOfRoom = int.Parse(GridViewRooms.Rows[e.RowIndex].Cells[2].Text);
+
+            Enum.TryParse(GridViewRooms.Rows[e.RowIndex].Cells[2].Text, out RoomQuality roomQuality);
+            int sizeOfRoom = (int)roomQuality;
 
             //søke etter første ledige rom
             Room room = HotelController.RetrieveAvaliableRooms(hcx, numOfBeds, sizeOfRoom, dateStart, dateEnd).FirstOrDefault(r => r.NumOfBeds == numOfBeds && r.Size == sizeOfRoom);
@@ -164,6 +167,14 @@ namespace WebFormsHotel
 
                 //TODO kvittering?
                 Response.Redirect("LoggedIn2.aspx");
+            }
+        }
+
+        protected void GridViewRooms_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[2].Text = RoomHelper.ConvertQualityToText(e.Row.Cells[2].Text);
             }
         }
     }

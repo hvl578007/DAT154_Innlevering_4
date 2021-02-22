@@ -37,5 +37,13 @@ namespace WebFormsHotel
             //går til søkesida
             Response.Redirect("SearchRooms.aspx");
         }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[7].Text = RoomHelper.ConvertQualityToText(e.Row.Cells[7].Text);
+            }
+        }
     }
 }
