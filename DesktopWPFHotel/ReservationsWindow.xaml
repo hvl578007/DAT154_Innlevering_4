@@ -5,26 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopWPFHotel"
         mc:Ignorable="d"
-        Title="ReservationsWindow" Height="450" Width="800">
+        Title="ReservationsWindow" Height="500" Width="800">
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500" />
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
         <Label Content="Exelence Hotel" HorizontalAlignment="Left" Margin="32,18,0,0" VerticalAlignment="Top" Height="29" Width="108"/>
         <Label Content="Reservations:" HorizontalAlignment="Left" Margin="32,50,0,0" VerticalAlignment="Top"/>
-        
-        <ListView HorizontalAlignment="Left" Height="357" Margin="130,52,0,0" VerticalAlignment="Top" Width="652">
+
+        <ListView Grid.Column="0" Name="ResList" HorizontalAlignment="Left" Height="357" Margin="115,52,0,0" VerticalAlignment="Top" Width="380" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" Header="Reservation Num"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="Name"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="RomNr"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="Date Start"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="Date End"></GridViewColumn>
-                    <GridViewColumn Width="60" Header="Check In">
-                        <!--en knapp for å sjekke in?-->
-                    </GridViewColumn>
-                    <GridViewColumn Width="60" Header="Chek out"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Path=User.Name}"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Date Start" DisplayMemberBinding="{Binding Path=DateStart}"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Date End" DisplayMemberBinding="{Binding Path=DateEnd}"></GridViewColumn>
+                    <GridViewColumn Width="70" Header="Checked In" DisplayMemberBinding="{Binding Path=CheckedIn}"></GridViewColumn>
+                    <!-- alternativt dockpanel eller grid for å få til knapper (checkin, chekout)-->
                 </GridView>
             </ListView.View>
         </ListView>
 
+        <Grid Name="ContentGrid" Grid.Column="1" Margin="0,0,218,0">
+            <StackPanel HorizontalAlignment="Left" Height="357" Margin="10,52,0,0" VerticalAlignment="Top" Width="262">
+                <TextBlock>
+                    <Bold>Reservation id: </Bold>
+                </TextBlock>
+                <TextBlock Name="ResId"></TextBlock>
+                <!--<ListView>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="100" Header="Reservation Num" DisplayMemberBinding="{Binding Path=ReservationId}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="RomNr" DisplayMemberBinding="{Binding Path=Room.RoomId}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>-->
+                
+                <Button Content="endre Rom"/>
+            </StackPanel>
+        </Grid>
     </Grid>
+
 </Window>
+   
