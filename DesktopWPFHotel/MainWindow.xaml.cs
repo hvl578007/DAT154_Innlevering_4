@@ -43,14 +43,14 @@ namespace DesktopWPFHotel
 
         private void UserSearch_Button(object sender, RoutedEventArgs e)
         {
-            if (hcx.Users.Find(UserName.Text) != null)
+            if (hcx.Users.Find(userNameText.Text) != null)
             {
-                new UserReservationWin(hcx, UserName.Text).Show();
+                new UserReservationWin(hcx, userNameText.Text).Show();
                 this.Close();
             }
             else
             {
-                UserName.Text = "Please enter a valid user.";
+                userNameText.Text = "Please enter a valid user.";
             }
 
         }
