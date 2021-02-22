@@ -65,8 +65,16 @@ namespace DesktopWPFHotel
 
         private void RoomInfo_Button(object sender, RoutedEventArgs e)
         {
-            new RoomInfo(hcx).Show();
-            this.Close();
+            bool isRoom = int.TryParse(roomNumberText.Text, out int rId);
+            if (isRoom && hcx.Rooms.Find(rId)!=null)
+            {
+                new RoomInfo(hcx, rId).Show();
+                this.Close();
+            }
+            else
+            {
+                roomNumberText.Text = "Enter a valid roomnumber";
+            }
         }
 
         private void AllRoms_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

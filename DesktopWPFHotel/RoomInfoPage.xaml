@@ -7,8 +7,47 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RoomInfoPage">
-
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="1"  Text="Hotel name here"
+                   FontSize="20" Grid.ColumnSpan="2" Margin="0,0,0,40"/>
+        <TextBlock Grid.Column="1" Grid.Row="2"  Text="Room Information"
+                   Grid.ColumnSpan="2"/>
+
+        <ListView Name="RoomList" ItemsSource="{Binding}" Grid.Column="4" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Width="100" Header="Room" DisplayMemberBinding="{Binding Path=RoomId}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Beds" DisplayMemberBinding="{Binding Path=NumOfBeds}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Size" DisplayMemberBinding="{Binding Path=Size}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Task type" DisplayMemberBinding="{Binding Path=Type}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Notes" DisplayMemberBinding="{Binding Path=Note}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Info" DisplayMemberBinding="{Binding Path=Info}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="State" DisplayMemberBinding="{Binding Path=State}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
     </Grid>
 </Page>

@@ -26,24 +26,26 @@ namespace DesktopWPFHotel
         private DbSet<Room> rooms;
         private DbSet<Task> tasks;
 
-        public RoomInfo(HotelContext hcx)
+        public RoomInfo(HotelContext hcx, int RoomId)
         {
             InitializeComponent();
             
             rooms = hcx.Set<Room>();
             tasks = hcx.Set<Task>();
 
-            rooms.Load();
+            Room SearchRoom = rooms.Find(RoomId);
             tasks.Load();
 
+            RoomInf.DataContext = SearchRoom;
+            TaskList.DataContext = from tk in tasks.Local
+                                   where tk.RoomRoomId.Equals (SearchRoom.RoomId)
+                                   select new {tk.Info, tk.Note, tk.State, tk.Type };
 
+        }
 
-            var taskList = from rm in rooms.Local
-                           join tk in tasks.Local
-                           on rm.RoomId equals tk.RoomRoomId
-                           select new { rm.RoomId, rm.NumOfBeds, rm.Size, tk.Info, tk.Note, tk.State, tk.Type };
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
 
-            RoomList.DataContext = taskList;
         }
     }
 }
