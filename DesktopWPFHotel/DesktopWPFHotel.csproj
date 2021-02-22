@@ -89,9 +89,6 @@
     <Compile Include="UserReservationPage.xaml.cs">
       <DependentUpon>UserReservationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserReservationWin.xaml.cs">
-      <DependentUpon>UserReservationWin.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
