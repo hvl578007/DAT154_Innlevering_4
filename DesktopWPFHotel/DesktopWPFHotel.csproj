@@ -65,18 +65,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationsPage.xaml.cs">
+      <DependentUpon>ReservationsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReservationsWindow.xaml.cs">
       <DependentUpon>ReservationsWindow.xaml</DependentUpon>
     </Compile>
-	  <Compile Include="RoomInfo.xaml.cs">
-		  <DependentUpon>RoomInfo.xaml</DependentUpon>
-	  </Compile>
+    <Compile Include="RoomInfo.xaml.cs">
+      <DependentUpon>RoomInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RoomInfoPage.xaml.cs">
+      <DependentUpon>RoomInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchRooms.xaml.cs">
       <DependentUpon>SearchRooms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchRoomsPage.xaml.cs">
+      <DependentUpon>SearchRoomsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserReservationPage.xaml.cs">
+      <DependentUpon>UserReservationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserReservationWin.xaml.cs">
       <DependentUpon>UserReservationWin.xaml</DependentUpon>
     </Compile>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,11 +108,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ReservationsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ReservationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RoomInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RoomInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchRoomsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserReservationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
