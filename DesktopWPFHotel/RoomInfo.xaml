@@ -45,11 +45,12 @@
         <TextBox x:Name="AddNotes" Grid.Column="3" Grid.Row="3" Width="120"/>
         <TextBlock Grid.Column="4" Grid.Row="2"  Text="Info: "/>
         <TextBox x:Name="AddInfo" Grid.Column="4" Grid.Row="3" Width="120"/>
-
+        <TextBlock Text="Task type" Grid.Column="5" Grid.Row="2"/>
         <ComboBox Text="Task type" Name="TaskType" Grid.Column="5" Grid.Row="3">
             <ComboBoxItem Name="Service" Content="Service"/>
             <ComboBoxItem Name="Maintenance" Content="Maintenance"/>
         </ComboBox>
+        <TextBlock Text="State" Grid.Column="6" Grid.Row="2"/>
         <ComboBox Text="State" Name="TaskState" Grid.Column="6" Grid.Row="3">
             <ComboBoxItem Name="Ns" Content="Not Started"/>
             <ComboBoxItem Name="Fin" Content="Finished"/>
