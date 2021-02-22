@@ -12,18 +12,23 @@
 			
 			<!--søk på brukernavn-->
 			<Grid>
-				<TextBox Name="UserName"></TextBox>
-				<Button Name="UserNameBTN" Content="Search"></Button>
-			</Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Please enter username: " />
+                    <TextBox Name="UserName" Text="" Width="591" />
+                </StackPanel>
+                <Button x:Name="UserNameBTN" Content="Search user" HorizontalAlignment="Right" Click="UserSearch_Button"/>
+            </Grid>
 
 			<!--søk på romnummer-->
-			<Grid>
-				<TextBox Name="RoomNr"></TextBox>
-				<Button Name="RoomNrBTN" Content="Search"></Button>
-			</Grid>
-			
-			
-			<Button Name="AllRoms" Click="Reservation_Button" Content="See All Rooms"></Button>
+            <Grid>
+			<StackPanel Orientation="Horizontal">
+                <Label Content="Room id: " />
+                <TextBox Name="RoomNr" Width="660"/>
+            </StackPanel>
+            <Button Name="RoomNrBTN" Content="Search room" Click="RoomInfo_Button" HorizontalAlignment="Right"></Button>
+            </Grid>
+
+            <Button Name="AllRoms"  Content="See All Rooms"></Button>
 		    <Button Name="NyRes" Click="Reservation_Button" Content="Ny Reservasjon"></Button>
 		</StackPanel>
 	</Grid>

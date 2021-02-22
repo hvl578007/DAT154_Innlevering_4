@@ -41,14 +41,35 @@ namespace DesktopWPFHotel
 
         }
 
+        private void UserSearch_Button(object sender, RoutedEventArgs e)
+        {
+            if (hcx.Users.Find(UserName.Text) != null)
+            {
+                new UserReservationWin(hcx, UserName.Text).Show();
+                this.Close();
+            }
+            else
+            {
+                UserName.Text = "Please enter a valid user.";
+            }
+
+        }
+
         private void Reservation_Button(object sender, RoutedEventArgs e)
         {
-            new ReservationsWindow(hcx);
+            new ReservationsWindow(hcx).Show();
+            this.Close();
         }
 
         private void RoomInfo_Button(object sender, RoutedEventArgs e)
         {
-            new RoomInfo(hcx);
+            new RoomInfo(hcx).Show();
+            this.Close();
+        }
+
+        private void AllRoms_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

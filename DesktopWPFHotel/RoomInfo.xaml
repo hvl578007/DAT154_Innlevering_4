@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="RoomInfo" Height="450" Width="800">
     <Grid>
-        
+        <ListView Name="RoomList" ItemsSource="{Binding}" Margin="0,43,0,0">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Width="100" Header="Room" DisplayMemberBinding="{Binding Path=RoomId}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Beds" DisplayMemberBinding="{Binding Path=NumOfBeds}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Size" DisplayMemberBinding="{Binding Path=Size}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Task type" DisplayMemberBinding="{Binding Path=Type}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Notes" DisplayMemberBinding="{Binding Path=Note}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Info" DisplayMemberBinding="{Binding Path=Info}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="State" DisplayMemberBinding="{Binding Path=State}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+       
+
     </Grid>
 </Window>
