@@ -21,17 +21,16 @@ namespace DesktopWPFHotel
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : NavigationWindow
     {
         //databasekopling - bruk hcx!
-        private HotelContext hcx = new HotelContext();
 
         public MainWindow()
         {
             
             InitializeComponent();
 
-            hcx.Rooms.Load();
+            //hcx.Rooms.Load();
 
             //hcx.Rooms.Add(new Room { RoomId = 100, NumOfBeds = 2, Size = 1 });
             //hcx.SaveChanges();
@@ -41,63 +40,6 @@ namespace DesktopWPFHotel
 
         }
 
-        private void UserSearch_Button(object sender, RoutedEventArgs e)
-        {
-            if (hcx.Users.Find(userNameText.Text) != null)
-            {
-                new UserReservationWin(hcx, userNameText.Text).Show();
-                this.Close();
-            }
-            else
-            {
-                userNameText.Text = "Please enter a valid user.";
-            }
-
-        }
-
-        private void Reservation_Button(object sender, RoutedEventArgs e)
-        {
-            if (validateForm())
-            { 
-            new ReservationsWindow(hcx).Show();
-            }
-        }
-
-        private void RoomInfo_Button(object sender, RoutedEventArgs e)
-        {
-            bool isRoom = int.TryParse(roomNumberText.Text, out int rId);
-            if (isRoom && hcx.Rooms.Find(rId)!=null)
-            {
-                new RoomInfo(hcx, rId).Show();
-                this.Close();
-            }
-            else
-            {
-                roomNumberText.Text = "Enter a valid roomnumber";
-            }
-        }
-
-        private void AllRoms_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void newRes_Button(object sender, RoutedEventArgs e)
-        {
-            new SearchRooms(hcx);
-        }
-
-        private bool validateForm()
-        {
-            bool output = true;
-            // legge til flere?
-
-            if (userNameText.Text.Length <= 2 || userNameText.Text.Length > 14)
-            {
-                output = false;
-            }
-
-            return output;
-        }
+        
     }
 }
