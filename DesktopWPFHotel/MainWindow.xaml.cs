@@ -21,17 +21,17 @@ namespace DesktopWPFHotel
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class MainWindow : Window
     {
         //databasekopling - bruk hcx!
-        //private HotelContext hcx = new HotelContext();
+        private HotelContext hcx = new HotelContext();
 
         public MainWindow()
         {
             
             InitializeComponent();
 
-            //hcx.Rooms.Load();
+            hcx.Rooms.Load();
 
             //hcx.Rooms.Add(new Room { RoomId = 100, NumOfBeds = 2, Size = 1 });
             //hcx.SaveChanges();
@@ -39,6 +39,57 @@ namespace DesktopWPFHotel
             //lage nytt vindu - burde sende med hcx som parameter til vinduet!
             //new ReservationsWindow(hcx);
 
+        }
+
+        private void UserSearch_Button(object sender, RoutedEventArgs e)
+        {
+            if (hcx.Users.Find(userNameText.Text) != null)
+            {
+                new UserReservationWin(hcx, userNameText.Text).Show();
+                this.Close();
+            }
+            else
+            {
+                userNameText.Text = "Please enter a valid user.";
+            }
+
+        }
+
+        private void Reservation_Button(object sender, RoutedEventArgs e)
+        {
+            if (validateForm())
+            { 
+            new ReservationsWindow(hcx).Show();
+            }
+        }
+
+        private void RoomInfo_Button(object sender, RoutedEventArgs e)
+        {
+            new RoomInfo(hcx).Show();
+            this.Close();
+        }
+
+        private void AllRoms_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void newRes_Button(object sender, RoutedEventArgs e)
+        {
+            new SearchRooms(hcx);
+        }
+
+        private bool validateForm()
+        {
+            bool output = true;
+            // legge til flere?
+
+            if (userNameText.Text.Length <= 2 || userNameText.Text.Length > 14)
+            {
+                output = false;
+            }
+
+            return output;
         }
     }
 }
