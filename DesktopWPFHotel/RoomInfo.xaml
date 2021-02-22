@@ -10,8 +10,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
@@ -28,32 +31,37 @@
 
         <TextBlock Grid.Column="1" Grid.Row="1"  Text="Hotel name here"
                    FontSize="20" Margin="0,0,10,40"/>
-        <TextBlock Grid.Column="1" Grid.Row="2"  Text="Room Information"
+        <TextBlock Grid.Column="1" Grid.Row="3"  Text="Room Information"
+                   Grid.ColumnSpan="2"/>
+        <TextBlock Name ="RoomNumber"  Grid.Column="1" Grid.Row="4"  Text="Room number: "
+                   Grid.ColumnSpan="2"/>
+        <TextBlock Name="Beds" Grid.Column="1" Grid.Row="5"  Text="Beds: "
+                   Grid.ColumnSpan="2"/>
+        <TextBlock Name="Size" Grid.Column="1" Grid.Row="6"  Text="Size: "
                    Grid.ColumnSpan="2"/>
 
+        <TextBlock Grid.Column="2" Grid.Row="2"  Text="Add task"/>
+        <TextBlock Grid.Column="3" Grid.Row="2"  Text="Notes: "/>
+        <TextBox x:Name="AddNotes" Grid.Column="3" Grid.Row="3" Width="120"/>
+        <TextBlock Grid.Column="4" Grid.Row="2"  Text="Info: "/>
+        <TextBox x:Name="AddInfo" Grid.Column="4" Grid.Row="3" Width="120"/>
 
-        
-        
-        
-        
-        <ListView Name="RoomInf" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="4">
+        <ComboBox Text="Task type" Name="TaskType" Grid.Column="5" Grid.Row="3">
+            <ComboBoxItem Name="Service" Content="Service"/>
+            <ComboBoxItem Name="Maintenance" Content="Maintenance"/>
+        </ComboBox>
+        <ComboBox Text="State" Name="TaskState" Grid.Column="6" Grid.Row="3">
+            <ComboBoxItem Name="Ns" Content="Not Started"/>
+            <ComboBoxItem Name="Fin" Content="Finished"/>
+        </ComboBox>
+
+
+
+        <ListView Name="tasksList" ItemsSource="{Binding}" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Width="70" Header="Room num" DisplayMemberBinding="{Binding Path=RoomId}"></GridViewColumn>
-                        <GridViewColumn Width="40" Header="Beds" DisplayMemberBinding="{Binding Path=NumOfBeds}"></GridViewColumn>
-                        <GridViewColumn Width="40" Header="Size" DisplayMemberBinding="{Binding Path=Size}"></GridViewColumn>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-
-        <ListView Name="TaskList" ItemsSource="{Binding}" Grid.Column="4" Grid.Row="4">
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn Width="100" Header="Task type" DisplayMemberBinding="{Binding Path=Type}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Task type" DisplayMemberBinding="{Binding Path= Type}"></GridViewColumn>
                         <GridViewColumn Width="100" Header="Notes" DisplayMemberBinding="{Binding Path=Note}"></GridViewColumn>
                         <GridViewColumn Width="100" Header="Info" DisplayMemberBinding="{Binding Path=Info}"></GridViewColumn>
                         <GridViewColumn Width="100" Header="State" DisplayMemberBinding="{Binding Path=State}"></GridViewColumn>
@@ -61,8 +69,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="Submit" Content="Submit changes" Click="Submit_Click" Grid.Column="4" Grid.Row="1" Margin="476,44,0,0">
-            
+        <Button x:Name="Submit" Content="Submit changes" Click="Submit_Click" Grid.Column="2" Grid.Row="3" >
         </Button>
+
     </Grid>
 </Window>

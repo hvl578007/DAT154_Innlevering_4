@@ -41,6 +41,7 @@ namespace DesktopWPFHotel
 
         }
 
+/*
         private void UserSearch_Button(object sender, RoutedEventArgs e)
         {
             if (hcx.Users.Find(userNameText.Text) != null)
@@ -54,7 +55,7 @@ namespace DesktopWPFHotel
             }
 
         }
-
+*/
         private void Reservation_Button(object sender, RoutedEventArgs e)
         {
             if (validateForm())
@@ -66,9 +67,10 @@ namespace DesktopWPFHotel
         private void RoomInfo_Button(object sender, RoutedEventArgs e)
         {
             bool isRoom = int.TryParse(roomNumberText.Text, out int rId);
-            if (isRoom && hcx.Rooms.Find(rId)!=null)
+            Room r = hcx.Rooms.Find(rId);
+            if (isRoom && (r!=null))
             {
-                new RoomInfo(hcx, rId).Show();
+                new RoomInfo(hcx, r).Show();
                 this.Close();
             }
             else

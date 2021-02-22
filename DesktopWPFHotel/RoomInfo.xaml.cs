@@ -23,29 +23,30 @@ namespace DesktopWPFHotel
 
     public partial class RoomInfo : Window
     {
-        private DbSet<Room> rooms;
+        private Room r;
         private DbSet<Task> tasks;
 
-        public RoomInfo(HotelContext hcx, int RoomId)
+        public RoomInfo(HotelContext hcx, Room r )
         {
             InitializeComponent();
-            
-            rooms = hcx.Set<Room>();
+            this.r = r;
             tasks = hcx.Set<Task>();
-
-            Room SearchRoom = rooms.Find(RoomId);
             tasks.Load();
 
-            RoomInf.DataContext = SearchRoom;
-            TaskList.DataContext = from tk in tasks.Local
-                                   where tk.RoomRoomId.Equals (SearchRoom.RoomId)
-                                   select new {tk.Info, tk.Note, tk.State, tk.Type };
-
-        }
+            RoomNumber.Text += r.RoomId;
+            Beds.Text += r.NumOfBeds;
+            Size.Text += r.Size;
+            Task t = new ClassLibraryHotel.Task { TaskId = 2, Note = "Hi", Info = "Some info", State = 0, Type = 0, RoomRoomId = 1, Room = r };
+            tasks.Add(new ClassLibraryHotel.Task { TaskId = 1, Note = "Something", Info = "Info", State = 0, Type = 0, RoomRoomId = 1, Room = r });
+            tasks.Add(t);
+            tasksList.DataContext = r.Tasks;
+            }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-
+            //task id
+            tasks.Find(1).Info = AddInfo.Text;
+            tasksList.DataContext = r.Tasks;
         }
     }
 }
