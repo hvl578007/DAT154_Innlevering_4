@@ -73,9 +73,9 @@
         </ListView>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="8" Margin="20,5,0,0">
-            <TextBox x:Name="userNameText" TextWrapping="Wrap" Text="Username" Width="100" Margin="0,0,5,0"/>
-            <TextBox x:Name="nameText" TextWrapping="Wrap" Text="Name" Width="120" Margin="0,0,5,0" />
-            <Button x:Name="submitButton" Content="Book" Width="50"/>
+            <TextBox x:Name="userNameText" TextWrapping="Wrap" Text="Username" Width="120" Margin="0,0,5,0"/>
+            <TextBox x:Name="nameText" TextWrapping="Wrap" Text="Name" Width="130" Margin="0,0,5,0" />
+            <Button x:Name="submitButton" Content="Book" Width="50" Click="bookButton_Click"/>
         </StackPanel>
 
         <Button x:Name="searchButton" Grid.Column="1" Grid.Row="7" Content="Search" Width="60" Margin="0,0,119,0" Click="searchButton_Click"/>

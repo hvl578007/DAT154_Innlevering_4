@@ -49,7 +49,7 @@ namespace DesktopWPFHotel
                 return;
             }
 
-            int beds = int.Parse(numberOfBeds.Tag.ToString());
+            int beds = int.Parse(numberOfBeds.Tag.ToString()); //Usikker om detta er riktig
 
             int quality = 0;
             //var checkedValue = (panel.Children.OfType<RadioButton>().FirstOrDefault(r => r.IsChecked.HasValue && r.IsChecked.Value));
@@ -71,7 +71,14 @@ namespace DesktopWPFHotel
 
             roomList.DataContext = availableRooms;
             
-
+            // Mer her? Hvordan "selecte" etter man får opp lista med ledige rom?
         }
+
+        protected void bookButton_Click(object sender, EventArgs e)
+        {
+            // Motta data fra over etter å ha "selected" rom
+            // Må så lagre data i database
+        }
+
     }
 }
