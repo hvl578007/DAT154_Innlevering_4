@@ -17,9 +17,9 @@
             <TextBox Name="TextRoomBeds"></TextBox>
             <Label Content="Quality"></Label>
             <ComboBox Name="ComboRoomQuality">
-                <ComboBoxItem Content="Ok" Tag="1"></ComboBoxItem>
-                <ComboBoxItem Content="Good" Tag="2"></ComboBoxItem>
-                <ComboBoxItem Content="Amazing" Tag="3"></ComboBoxItem>
+                <ComboBoxItem Content="Ok" Tag="0"></ComboBoxItem>
+                <ComboBoxItem Content="Good" Tag="1"></ComboBoxItem>
+                <ComboBoxItem Content="Amazing" Tag="2"></ComboBoxItem>
             </ComboBox>
             <Label Content=""></Label>
             <Button Name="BtnCreateNewRoom" Content="Create new room" Click="BtnCreateNewRoom_Click"></Button>
