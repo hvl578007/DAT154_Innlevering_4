@@ -54,7 +54,7 @@ namespace DesktopWPFHotel
                 taskState = 0;
             }
 
-            if (taskType != 1 || taskType!=2)
+            if (taskType != 1 && taskType!=2)
             {
                 TTNS.Visibility = Visibility.Visible;
             }
@@ -99,7 +99,7 @@ namespace DesktopWPFHotel
             t = (Task)tasksList.SelectedItem;
             AddNotes.Text = t.Note;
             AddInfo.Text = t.Info;
-            TaskType.SelectedIndex = t.Type;
+            TaskType.SelectedIndex = t.Type-1;
             TaskState.SelectedIndex = t.State;
         }
 
