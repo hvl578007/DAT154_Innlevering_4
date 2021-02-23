@@ -83,7 +83,6 @@ namespace DesktopWPFHotel
                 }
 
                 Reset();
-
                 //Må oppdatere viduet slik at nye tasks vises.
 
             }

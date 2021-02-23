@@ -61,7 +61,8 @@ namespace DesktopWPFHotel
             Room r = hcx.Rooms.Find(rId);
             if (isRoom && (r != null))
             {
-                new RoomInfoPage(hcx, r);
+                this.NavigationService.Navigate(new RoomInfoPage(hcx, r));
+                
                 
             }
             else
