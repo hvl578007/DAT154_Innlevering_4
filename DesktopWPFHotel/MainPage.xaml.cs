@@ -95,5 +95,11 @@ namespace DesktopWPFHotel
 
             return output;
         }
+
+        private void CreateNewRoomBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NewRoomPage newRoomPage = new NewRoomPage(hcx);
+            this.NavigationService.Navigate(newRoomPage);
+        }
     }
 }

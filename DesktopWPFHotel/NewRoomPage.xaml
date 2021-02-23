@@ -1,0 +1,30 @@
+﻿<Page x:Class="DesktopWPFHotel.NewRoomPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DesktopWPFHotel"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="NewRoomPage">
+
+    <Grid>
+        <TextBlock Text="Create new room" FontSize="30" Margin="30,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
+        <StackPanel Name="NewRoomStack" Margin="50,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Label Content="Room id:" Visibility="Hidden"></Label>
+            <TextBox Name="TextRoomId" Visibility="Hidden"></TextBox>
+            <Label Content="Beds:"></Label>
+            <TextBox Name="TextRoomBeds"></TextBox>
+            <Label Content="Quality"></Label>
+            <ComboBox Name="ComboRoomQuality">
+                <ComboBoxItem Content="Ok" Tag="1"></ComboBoxItem>
+                <ComboBoxItem Content="Good" Tag="2"></ComboBoxItem>
+                <ComboBoxItem Content="Amazing" Tag="3"></ComboBoxItem>
+            </ComboBox>
+            <Label Content=""></Label>
+            <Button Name="BtnCreateNewRoom" Content="Create new room" Click="BtnCreateNewRoom_Click"></Button>
+            <Label Name="RoomIDErrorLabel" Content="Room id already exists!" Visibility="Hidden"></Label>
+
+        </StackPanel>
+    </Grid>
+</Page>

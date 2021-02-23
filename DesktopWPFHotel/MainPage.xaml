@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DesktopWPFHotel"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1000"
       Title="Hotel - MainPage">
 
     <Grid>
@@ -19,6 +19,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -48,6 +49,9 @@
         <TextBlock Grid.Column="3" Grid.Row="4" Text="All Reservations:" Margin="10,0,10,0"/>
         <Button x:Name="submitButtonAll" Content="All" Grid.Column="3" Grid.Row="5"
                 Margin="10" Click="Reservation_Button"/>
+
+        <Label Grid.Column="1" Grid.Row="6" Content="Create new room:" Margin="0,10,0,10"></Label>
+        <Button Grid.Column="2" Grid.Row="6" Name="CreateNewRoomBtn" Content="New room page" Margin="10" Click="CreateNewRoomBtn_Click"></Button>
 
     </Grid>
 </Page>
