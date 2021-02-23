@@ -79,7 +79,7 @@ namespace DesktopWPFHotel
         private void newRes_Button(object sender, RoutedEventArgs e)
         {
             //new SearchRooms(hcx);
-            SearchRoomsPage searchRoomsPage = new SearchRoomsPage();
+            SearchRoomsPage searchRoomsPage = new SearchRoomsPage(hcx);
             this.NavigationService.Navigate(searchRoomsPage);
         }
 

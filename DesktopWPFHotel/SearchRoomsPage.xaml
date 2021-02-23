@@ -51,7 +51,7 @@
             </ComboBox>
         </StackPanel>
 
-        <StackPanel Grid.Column="2" Grid.Row="4" >
+        <StackPanel x:Name="panel" Grid.Column="2" Grid.Row="4" >
             <TextBlock Text="Quality:" Margin="0,0,0,5" />
             <RadioButton  Content="Ok" Name="radioBTNok"/>
             <RadioButton  Content="Good" Name="radioBTNgood"/>
@@ -62,7 +62,7 @@
 
         <ListView Grid.Column="3" Grid.Row="3" Name="roomList" Grid.ColumnSpan="2" Grid.RowSpan="5" Margin="20,0,60,0" ItemsSource="{Binding}">
             <ListView.View>
-                <GridView>
+                <GridView x:Name="gridAvailableRooms">
                     <GridView.Columns>
                         <GridViewColumn Width="100" Header="Room Nr." DisplayMemberBinding="{Binding Path=studentname}"></GridViewColumn>
                         <GridViewColumn Width="100" Header="Beds" DisplayMemberBinding="{Binding Path=id}"></GridViewColumn>
@@ -77,5 +77,7 @@
             <TextBox x:Name="nameText" TextWrapping="Wrap" Text="Name" Width="120" Margin="0,0,5,0" />
             <Button x:Name="submitButton" Content="Book" Width="50"/>
         </StackPanel>
+
+        <Button x:Name="searchButton" Grid.Column="1" Grid.Row="7" Content="Search" Width="60" Margin="0,0,119,0" Click="searchButton_Click"/>
     </Grid>
 </Page>
