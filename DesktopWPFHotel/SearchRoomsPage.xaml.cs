@@ -30,6 +30,7 @@ namespace DesktopWPFHotel
         public SearchRoomsPage(HotelContext hcx)
         {
             InitializeComponent();
+            this.hcx = hcx;
         }
 
         protected void searchButton_Click(object sender, EventArgs e)
@@ -66,8 +67,9 @@ namespace DesktopWPFHotel
             }
 
 
-            List<Room> avaliableRooms = HotelController.RetrieveAvaliableRooms(hcx, beds, quality, dateStart, dateEnd);
+            List<Room> availableRooms = HotelController.RetrieveAvaliableRooms(hcx, beds, quality, dateStart, dateEnd);
 
+            roomList.DataContext = availableRooms;
             
 
         }

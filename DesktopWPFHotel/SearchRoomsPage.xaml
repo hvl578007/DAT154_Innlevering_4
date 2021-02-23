@@ -62,11 +62,11 @@
 
         <ListView Grid.Column="3" Grid.Row="3" Name="roomList" Grid.ColumnSpan="2" Grid.RowSpan="5" Margin="20,0,60,0" ItemsSource="{Binding}">
             <ListView.View>
-                <GridView x:Name="gridAvailableRooms">
+                <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Width="100" Header="Room Nr." DisplayMemberBinding="{Binding Path=studentname}"></GridViewColumn>
-                        <GridViewColumn Width="100" Header="Beds" DisplayMemberBinding="{Binding Path=id}"></GridViewColumn>
-                        <GridViewColumn Width="100" Header="Quality" DisplayMemberBinding="{Binding Path=studentage}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Room Nr." DisplayMemberBinding="{Binding Path=RoomId}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Beds" DisplayMemberBinding="{Binding Path=NumOfBeds}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Quality" DisplayMemberBinding="{Binding Path=Size}"></GridViewColumn>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
