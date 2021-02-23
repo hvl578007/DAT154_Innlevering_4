@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibraryHotel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,79 @@ namespace DesktopWPFHotel
     /// </summary>
     public partial class MainPage : Page
     {
+
+        private HotelContext hcx = new HotelContext();
+
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void UserSearch_Button(object sender, RoutedEventArgs e)
+        {
+            if (hcx.Users.Find(userNameText.Text) != null)
+            {
+                ReservationsPage reservationsPage = new ReservationsPage();
+                //new UserReservationWin(hcx, userNameText.Text).Show();
+                //this.Close();
+                this.NavigationService.Navigate(reservationsPage);
+            }
+            else
+            {
+                userNameText.Text = "Please enter a valid user.";
+            }
+
+        }
+
+        private void Reservation_Button(object sender, RoutedEventArgs e)
+        {
+            if (validateForm())
+            {
+                ReservationsPage reservationsPage = new ReservationsPage();
+                this.NavigationService.Navigate(reservationsPage);
+                //new ReservationsWindow(hcx).Show();
+            }
+        }
+
+        private void RoomInfo_Button(object sender, RoutedEventArgs e)
+        {
+            bool isRoom = int.TryParse(roomNumberText.Text, out int rId);
+            if (isRoom && hcx.Rooms.Find(rId) != null)
+            {
+                new RoomInfo(hcx, rId).Show();
+                //this.Close();
+                RoomInfoPage roomInfoPage = new RoomInfoPage(hcx);
+                this.NavigationService.Navigate(roomInfoPage);
+            }
+            else
+            {
+                roomNumberText.Text = "Enter a valid roomnumber";
+            }
+        }
+
+        private void AllRoms_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void newRes_Button(object sender, RoutedEventArgs e)
+        {
+            //new SearchRooms(hcx);
+            SearchRoomsPage searchRoomsPage = new SearchRoomsPage();
+            this.NavigationService.Navigate(searchRoomsPage);
+        }
+
+        private bool validateForm()
+        {
+            bool output = true;
+            // legge til flere?
+
+            if (userNameText.Text.Length <= 2 || userNameText.Text.Length > 14)
+            {
+                output = false;
+            }
+
+            return output;
         }
     }
 }

@@ -22,12 +22,12 @@ namespace DesktopWPFHotel
     {
         public SearchRooms()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
 
         public SearchRooms(HotelContext hcx)
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }

@@ -5,10 +5,49 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DesktopWPFHotel"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="Hotel - MainPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="1"  Text="Hotel name here"
+                   FontSize="20" Grid.ColumnSpan="2" Margin="0,0,0,40"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Username:" Margin="0,0,10,0"/>
+        <TextBox x:Name="userNameText" Grid.Column="2" Grid.Row="2" Width="120"/>
+        <Button x:Name="submitButtonUser" Content="Search" Grid.Column="2" Grid.Row="3"
+                Margin="10" Click="UserSearch_Button"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="4" Text="Roomnumber:" Margin="0,0,10,0"/>
+        <TextBox x:Name="roomNumberText" Grid.Column="2" Grid.Row="4" Width="120"/>
+        <Button x:Name="submitButtonRoom" Content="Search" Grid.Column="2" Grid.Row="5"
+                Margin="10" Click="RoomInfo_Button"/>
+
+        <TextBlock Grid.Column="3" Grid.Row="2" Text="New reservation:" Margin="10,0,10,0"/>
+        <Button x:Name="submitButtonNew" Content="New" Grid.Column="3" Grid.Row="3"
+                Margin="10" Click="newRes_Button"/>
+
+        <TextBlock Grid.Column="3" Grid.Row="4" Text="All Reservations:" Margin="10,0,10,0"/>
+        <Button x:Name="submitButtonAll" Content="All" Grid.Column="3" Grid.Row="5"
+                Margin="10" Click="Reservation_Button"/>
+
     </Grid>
 </Page>

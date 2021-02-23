@@ -21,10 +21,10 @@ namespace DesktopWPFHotel
     /// </summary>
     public partial class ReservationsWindow : Window
     {
-        public ReservationsWindow()
-        {
-            InitializeComponent();
-        }
+        //public ReservationsWindow()
+        //{
+        //    InitializeComponent();
+        //}
 
         public ReservationsWindow(HotelContext hcx)
         {
@@ -33,11 +33,23 @@ namespace DesktopWPFHotel
             hcx.Reservations.Load();
             var res = hcx.Reservations;
 
-            
+            ResList.DataContext = res.Local;
 
-            //foreach(Reservation r in res)
+            ResList.SelectionChanged += ResList_SelectionChanged;
+
+        }
+
+        //TODO - ny konstruktør for søk på bruker
+
+        private void ResList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+
+            //if((sender as ListView).SelectedIndex != -1)
             //{
-
+            //    if (ContentGrid.Visibility == Visibility) ContentGrid.Visibility = Visibility.Visible;
+            //    var selectedRes = (sender as ListView).SelectedItem as Reservation;
+            //    ResId.Text = ((sender as ListView).SelectedItem as Reservation).ReservationId.ToString();
             //}
 
         }
