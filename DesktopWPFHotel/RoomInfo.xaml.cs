@@ -29,7 +29,6 @@ namespace DesktopWPFHotel
         HotelContext hcx;
         public RoomInfo(HotelContext hcx, Room r )
         {
-
             InitializeComponent();
             this.hcx = hcx;
             this.r = r;
@@ -39,9 +38,6 @@ namespace DesktopWPFHotel
             RoomNumber.Text += r.RoomId;
             Beds.Text += r.NumOfBeds;
             Size.Text += r.Size;
-            //Task t = new ClassLibraryHotel.Task { TaskId = 2, Note = "Hi", Info = "Some info", State = 0, Type = 0, RoomRoomId = 1, Room = r };
-            //tasks.Add(new ClassLibraryHotel.Task { TaskId = 1, Note = "Something", Info = "Info", State = 0, Type = 0, RoomRoomId = 1, Room = r });
-            //tasks.Add(t);
             tasksList.DataContext = r.Tasks;
                 
         }
@@ -86,7 +82,6 @@ namespace DesktopWPFHotel
                 }
 
                 Reset();
-                TTNS.Visibility = Visibility.Hidden;
 
                 //Må oppdatere viduet slik at nye tasks vises.
 
@@ -115,6 +110,7 @@ namespace DesktopWPFHotel
             TaskType.SelectedIndex = -1;
             TaskState.SelectedIndex = -1;
             t = null;
+            TTNS.Visibility = Visibility.Hidden;
         }
     }
 }

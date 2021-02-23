@@ -61,7 +61,7 @@ namespace DesktopWPFHotel
             Room r = hcx.Rooms.Find(rId);
             if (isRoom && (r != null))
             {
-                new RoomInfo(hcx, r).Show();
+                new RoomInfoPage(hcx, r);
                 
             }
             else
