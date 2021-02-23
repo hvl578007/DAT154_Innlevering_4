@@ -27,7 +27,12 @@ namespace DesktopWPFHotel
             InitializeComponent();
         }
 
-        protected void BookButton_Click(object sender, EventArgs e)
+        public SearchRoomsPage(HotelContext hcx)
+        {
+            InitializeComponent();
+        }
+
+        protected void searchButton_Click(object sender, EventArgs e)
         {
             DateTime dateStart = (DateTime)CalendarFrom.SelectedDate;
             DateTime dateEnd = (DateTime)CalendarTo.SelectedDate;
@@ -43,9 +48,27 @@ namespace DesktopWPFHotel
                 return;
             }
 
-            int beds = int.Parse(numberOfBeds.Tag.ToString()); 
+            int beds = int.Parse(numberOfBeds.Tag.ToString());
+
+            int quality = 0;
+            //var checkedValue = (panel.Children.OfType<RadioButton>().FirstOrDefault(r => r.IsChecked.HasValue && r.IsChecked.Value));
+            if (radioBTNok.IsChecked == true)
+            {
+                quality = 0;
+            } 
+            else if (radioBTNgood.IsChecked == true)
+            {
+                quality = 1;
+            }
+            else if (radioBTNamazing.IsChecked == true)
+            {
+                quality = 2;
+            }
 
 
+            List<Room> avaliableRooms = HotelController.RetrieveAvaliableRooms(hcx, beds, quality, dateStart, dateEnd);
+
+            
 
         }
     }
