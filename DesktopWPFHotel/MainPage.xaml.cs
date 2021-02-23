@@ -33,7 +33,7 @@ namespace DesktopWPFHotel
         {
             if (hcx.Users.Find(userNameText.Text) != null)
             {
-                ReservationsPage reservationsPage = new ReservationsPage();
+                ReservationsPage reservationsPage = new ReservationsPage(hcx, userNameText.Text);
                 //new UserReservationWin(hcx, userNameText.Text).Show();
                 //this.Close();
                 this.NavigationService.Navigate(reservationsPage);
@@ -49,7 +49,7 @@ namespace DesktopWPFHotel
         {
             if (validateForm())
             {
-                ReservationsPage reservationsPage = new ReservationsPage();
+                ReservationsPage reservationsPage = new ReservationsPage(hcx);
                 this.NavigationService.Navigate(reservationsPage);
                 //new ReservationsWindow(hcx).Show();
             }
