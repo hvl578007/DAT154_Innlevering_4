@@ -60,7 +60,7 @@
         <Label Name="TTNS" Content="No task type selected" Grid.Row="1" Grid.Column="5" Visibility="Hidden" Grid.ColumnSpan="2" />
 
 
-        <ListView Name="tasksList" ItemsSource="{Binding}" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5" MouseDoubleClick="TaskList_OnMouseDoubleClick">
+        <ListView Name="tasksList" ItemsSource="{Binding}" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="10" MouseDoubleClick="TaskList_OnMouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>

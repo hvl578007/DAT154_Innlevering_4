@@ -72,6 +72,8 @@ namespace DesktopWPFHotel
 
                     tasks.Add(t);
                     hcx.SaveChanges();
+                    tasksList.DataContext = null;
+                    tasksList.DataContext = r.Tasks;
                 }
                 else
                 {
@@ -80,9 +82,12 @@ namespace DesktopWPFHotel
                     t.Type = taskType;
                     t.State = taskState;
                     hcx.SaveChanges();
+                    tasksList.DataContext = null;
+                    tasksList.DataContext = r.Tasks;
                 }
 
                 Reset();
+
                 //Må oppdatere viduet slik at nye tasks vises.
 
             }
