@@ -80,14 +80,8 @@
     <Compile Include="RoomInfoPage.xaml.cs">
       <DependentUpon>RoomInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SearchRooms.xaml.cs">
-      <DependentUpon>SearchRooms.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SearchRoomsPage.xaml.cs">
       <DependentUpon>SearchRoomsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserReservationPage.xaml.cs">
-      <DependentUpon>UserReservationPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
@@ -122,10 +116,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SearchRoomsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserReservationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
