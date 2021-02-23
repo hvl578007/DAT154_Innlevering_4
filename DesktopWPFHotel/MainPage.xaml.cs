@@ -58,12 +58,11 @@ namespace DesktopWPFHotel
         private void RoomInfo_Button(object sender, RoutedEventArgs e)
         {
             bool isRoom = int.TryParse(roomNumberText.Text, out int rId);
-            if (isRoom && hcx.Rooms.Find(rId) != null)
+            Room r = hcx.Rooms.Find(rId);
+            if (isRoom && (r != null))
             {
-                new RoomInfo(hcx, rId).Show();
-                //this.Close();
-                RoomInfoPage roomInfoPage = new RoomInfoPage(hcx);
-                this.NavigationService.Navigate(roomInfoPage);
+                new RoomInfo(hcx, r).Show();
+                
             }
             else
             {

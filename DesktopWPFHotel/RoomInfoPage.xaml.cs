@@ -23,27 +23,38 @@ namespace DesktopWPFHotel
     /// </summary>
     public partial class RoomInfoPage : Page
     {
-        private DbSet<Room> rooms;
+        private Room r;
         private DbSet<Task> tasks;
 
-        public RoomInfoPage(HotelContext hcx)
+        public RoomInfoPage(HotelContext hcx, Room r)
         {
             InitializeComponent();
-
-            rooms = hcx.Set<Room>();
+            this.r = r;
             tasks = hcx.Set<Task>();
-
-            rooms.Load();
             tasks.Load();
 
+            RoomNumber.Text += r.RoomId;
+            Beds.Text += r.NumOfBeds;
+            Size.Text += r.Size;
+            Task t = new ClassLibraryHotel.Task { TaskId = 2, Note = "Hi", Info = "Some info", State = 0, Type = 0, RoomRoomId = 1, Room = r };
+            tasks.Add(new ClassLibraryHotel.Task { TaskId = 1, Note = "Something", Info = "Info", State = 0, Type = 0, RoomRoomId = 1, Room = r });
+            tasks.Add(t);
+            tasksList.DataContext = r.Tasks;
+        }
+
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            String n = AddNotes.Text;
+            String i = AddInfo.Text;
+            int taskType = TaskType.SelectedIndex;
+            int taskState = TaskState.SelectedIndex;
+
+            tasks.Add(new ClassLibraryHotel.Task { TaskId = /* Ikke sikker hvordan jeg får en unik taskId */ 1, Note = n, Info = i, State = taskState, Type = taskType, RoomRoomId = r.RoomId, Room = r });
 
 
-            var taskList = from rm in rooms.Local
-                           join tk in tasks.Local
-                           on rm.RoomId equals tk.RoomRoomId
-                           select new { rm.RoomId, rm.NumOfBeds, rm.Size, tk.Info, tk.Note, tk.State, tk.Type };
-
-            RoomList.DataContext = taskList;
+            //task id
+            //tasks.Find(1).Info = AddInfo.Text;
+            tasksList.DataContext = r.Tasks;
         }
     }
 }

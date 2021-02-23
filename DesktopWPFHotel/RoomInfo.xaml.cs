@@ -25,10 +25,13 @@ namespace DesktopWPFHotel
     {
         private Room r;
         private DbSet<Task> tasks;
-
+        Task t;
+        HotelContext hcx;
         public RoomInfo(HotelContext hcx, Room r )
         {
+
             InitializeComponent();
+            this.hcx = hcx;
             this.r = r;
             tasks = hcx.Set<Task>();
             tasks.Load();
@@ -36,17 +39,82 @@ namespace DesktopWPFHotel
             RoomNumber.Text += r.RoomId;
             Beds.Text += r.NumOfBeds;
             Size.Text += r.Size;
-            Task t = new ClassLibraryHotel.Task { TaskId = 2, Note = "Hi", Info = "Some info", State = 0, Type = 0, RoomRoomId = 1, Room = r };
-            tasks.Add(new ClassLibraryHotel.Task { TaskId = 1, Note = "Something", Info = "Info", State = 0, Type = 0, RoomRoomId = 1, Room = r });
-            tasks.Add(t);
+            //Task t = new ClassLibraryHotel.Task { TaskId = 2, Note = "Hi", Info = "Some info", State = 0, Type = 0, RoomRoomId = 1, Room = r };
+            //tasks.Add(new ClassLibraryHotel.Task { TaskId = 1, Note = "Something", Info = "Info", State = 0, Type = 0, RoomRoomId = 1, Room = r });
+            //tasks.Add(t);
             tasksList.DataContext = r.Tasks;
-            }
+                
+        }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            //task id
-            tasks.Find(1).Info = AddInfo.Text;
-            tasksList.DataContext = r.Tasks;
+            
+            String n = AddNotes.Text;
+            String i = AddInfo.Text;
+            int taskType = TaskType.SelectedIndex;
+            int taskState = TaskState.SelectedIndex;
+            if (taskState == -1)
+            {
+                taskState = 0;
+            }
+
+            if (taskType == -1)
+            {
+                TTNS.Visibility = Visibility.Visible;
+            }
+            else { 
+                if (t == null)
+                {
+                    t = new ClassLibraryHotel.Task();
+                    t.Note = n;
+                    t.Info = i;
+                    t.Type = taskType;
+                    t.State = taskState;
+                    t.Room = r;
+                    t.RoomRoomId = r.RoomId;
+
+                    tasks.Add(t);
+                    hcx.SaveChanges();
+                }
+                else
+                {
+                    t.Note = n;
+                    t.Info = i;
+                    t.Type = taskType;
+                    t.State = taskState;
+                    hcx.SaveChanges();
+                }
+
+                Reset();
+                TTNS.Visibility = Visibility.Hidden;
+
+                //Må oppdatere viduet slik at nye tasks vises.
+
+            }
+        }
+
+
+        private void TaskList_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            t = (Task)tasksList.SelectedItem;
+            AddNotes.Text = t.Note;
+            AddInfo.Text = t.Info;
+            TaskType.SelectedIndex = t.Type;
+            TaskState.SelectedIndex = t.State;
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Reset();
+        }
+
+        private void Reset()
+        {
+            AddNotes.Text = "";
+            AddInfo.Text = "";
+            TaskType.SelectedIndex = -1;
+            TaskState.SelectedIndex = -1;
+            t = null;
         }
     }
 }

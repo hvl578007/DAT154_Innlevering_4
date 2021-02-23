@@ -47,18 +47,19 @@
         <TextBox x:Name="AddInfo" Grid.Column="4" Grid.Row="3" Width="120"/>
         <TextBlock Text="Task type" Grid.Column="5" Grid.Row="2"/>
         <ComboBox Text="Task type" Name="TaskType" Grid.Column="5" Grid.Row="3">
-            <ComboBoxItem Name="Service" Content="Service"/>
-            <ComboBoxItem Name="Maintenance" Content="Maintenance"/>
+            <ComboBoxItem Content="Service"/>
+            <ComboBoxItem Content="Maintenance"/>
         </ComboBox>
         <TextBlock Text="State" Grid.Column="6" Grid.Row="2"/>
         <ComboBox Text="State" Name="TaskState" Grid.Column="6" Grid.Row="3">
-            <ComboBoxItem Name="Ns" Content="Not Started"/>
-            <ComboBoxItem Name="Fin" Content="Finished"/>
+            <ComboBoxItem Content="Not Started"/>
+            <ComboBoxItem Content="Finished"/>
         </ComboBox>
 
+        <Label Name="TTNS" Content="No task type selected" Grid.Row="1" Grid.Column="5" Visibility="Hidden" Grid.ColumnSpan="2" />
 
 
-        <ListView Name="tasksList" ItemsSource="{Binding}" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5">
+        <ListView Name="tasksList" ItemsSource="{Binding}" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5" MouseDoubleClick="TaskList_OnMouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -70,8 +71,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="Submit" Content="Submit changes" Click="Submit_Click" Grid.Column="2" Grid.Row="3" >
-        </Button>
+        <Button x:Name="Submit" Content="Submit" Click="Submit_Click" Grid.Column="7" Grid.Row="3"/>
+        <Button x:Name="Cancel" Content="Cancel" Click="Cancel_Click" Grid.Column="7" Grid.Row="2"/>
 
     </Grid>
 </Window>
