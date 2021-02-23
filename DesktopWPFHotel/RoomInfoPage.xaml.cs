@@ -47,14 +47,14 @@ namespace DesktopWPFHotel
 
             String n = AddNotes.Text;
             String i = AddInfo.Text;
-            int taskType = TaskType.SelectedIndex;
+            int taskType = TaskType.SelectedIndex + 1;
             int taskState = TaskState.SelectedIndex;
             if (taskState == -1)
             {
                 taskState = 0;
             }
 
-            if (taskType == -1)
+            if (taskType != 1 || taskType!=2)
             {
                 TTNS.Visibility = Visibility.Visible;
             }
