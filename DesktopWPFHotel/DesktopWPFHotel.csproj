@@ -74,12 +74,6 @@
     <Compile Include="ReservationsPage.xaml.cs">
       <DependentUpon>ReservationsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReservationsWindow.xaml.cs">
-      <DependentUpon>ReservationsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RoomInfo.xaml.cs">
-      <DependentUpon>RoomInfo.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RoomInfoPage.xaml.cs">
       <DependentUpon>RoomInfoPage.xaml</DependentUpon>
     </Compile>
@@ -107,14 +101,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ReservationsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ReservationsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RoomInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

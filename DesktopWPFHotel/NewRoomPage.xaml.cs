@@ -35,19 +35,25 @@ namespace DesktopWPFHotel
         private void BtnCreateNewRoom_Click(object sender, RoutedEventArgs e)
         {
             //int roomid = int.Parse(TextRoomId.Text);
-            int.TryParse(TextRoomBeds.Text, out int roombeds);
+            bool ok = int.TryParse(TextRoomBeds.Text, out int roombeds);
             int.TryParse((ComboRoomQuality.SelectedItem as ComboBoxItem).Tag.ToString(), out int roomquality);
+            if (!ok)
+            {
+                TextRoomBeds.Text = "Error, not a number";
+                ComboRoomQuality.SelectedIndex = -1;
+                return;
+            }
             hcx.Rooms.Load();
             //var existingRoom = hcx.Rooms.Where(r => r.RoomId == roomid).FirstOrDefault();
             //if (existingRoom == null)
             //{
-                Room room = new Room { NumOfBeds=roombeds, Size=roomquality};
-                hcx.Rooms.Add(room);
-                hcx.SaveChanges();
-                //RoomIDErrorLabel.Visibility = Visibility.Hidden;
-                //TextRoomId.Text = "";
-                TextRoomBeds.Text = "";
-                ComboRoomQuality.SelectedIndex = -1;
+            Room room = new Room { NumOfBeds=roombeds, Size=roomquality};
+            hcx.Rooms.Add(room);
+            hcx.SaveChanges();
+            //RoomIDErrorLabel.Visibility = Visibility.Hidden;
+            //TextRoomId.Text = "";
+            TextRoomBeds.Text = "";
+            ComboRoomQuality.SelectedIndex = -1;
             //}
             //else
             //{
