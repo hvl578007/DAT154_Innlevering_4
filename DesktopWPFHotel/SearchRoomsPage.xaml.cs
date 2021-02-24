@@ -129,9 +129,9 @@ namespace DesktopWPFHotel
             User user = new User { Name = name, Username = username };
             //lag så reservation (kommenter vekk under):
             Reservation res = new Reservation { DateStart = dateStart, DateEnd = dateEnd, CheckedIn = false, CheckedOut = false, RoomRoomId = roomId, UserUsername = username };
-            String dbUser = hcx.Users.Find(username).Username;
+            var dbUser = hcx.Users.Find(username);
 
-            if (username == dbUser)
+            if (dbUser != null)
             {
                 errorInput.Visibility = Visibility.Visible;
                 userNameText.Text = "";
@@ -139,13 +139,13 @@ namespace DesktopWPFHotel
             }
             if (newUserCombo.SelectedIndex == 0)
             {
-                hcx.Users.Add(user);
                 hcx.Reservations.Add(res);
                 hcx.SaveChanges();
                 resetForm();
             }
             else if (newUserCombo.SelectedIndex == 1)
             {
+                hcx.Users.Add(user);
                 hcx.Reservations.Add(res);
                 hcx.SaveChanges();
                 resetForm();
