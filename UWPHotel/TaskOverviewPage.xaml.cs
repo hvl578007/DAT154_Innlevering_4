@@ -104,7 +104,7 @@ namespace UWPHotel
 
             tasks = JsonConvert.DeserializeObject<List<HotelTaskUWP>>(response);
 
-            TaskList.ItemsSource = tasks?.Where(t => t.Type == (int)type);
+            TaskList.ItemsSource = tasks?.Where(t => t.Type == (int)type && t.State < (int)TaskState.Finished);
 
             LoadingText.Visibility = Visibility.Collapsed;
         }
