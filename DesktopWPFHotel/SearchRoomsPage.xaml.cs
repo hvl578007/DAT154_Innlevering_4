@@ -31,7 +31,9 @@ namespace DesktopWPFHotel
         {
             InitializeComponent();
             this.hcx = hcx;
+            roomList.SelectionChanged += RoomList_SelectionChanged;
         }
+
 
         protected void searchButton_Click(object sender, EventArgs e)
         {
@@ -49,7 +51,8 @@ namespace DesktopWPFHotel
                 return;
             }
 
-            int beds = int.Parse(numberOfBeds.Tag.ToString()); //Usikker om detta er riktig
+            int beds = int.Parse((numberOfBeds.SelectedItem as ComboBoxItem).Tag.ToString()); //Usikker om detta er riktig
+            //stian har endra -> må hente ut selecteditem som comboboxitem og så hente ut tag
 
             int quality = 0;
             //var checkedValue = (panel.Children.OfType<RadioButton>().FirstOrDefault(r => r.IsChecked.HasValue && r.IsChecked.Value));
@@ -74,10 +77,44 @@ namespace DesktopWPFHotel
             // Mer her? Hvordan "selecte" etter man får opp lista med ledige rom?
         }
 
+        
+        private void RoomList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //her kan ein vise knappen etter ein har valt ein ting - metoden blir køyrd når ein trykkar på eit av felta i listview
+
+            //index == -1 betyr ikkje valt noko
+            if (roomList.SelectedIndex == -1)
+            {
+                submitButton.Visibility = Visibility.Hidden;
+            } else
+            {
+                submitButton.Visibility = Visibility.Visible;
+            }
+        }
+
         protected void bookButton_Click(object sender, EventArgs e)
         {
             // Motta data fra over etter å ha "selected" rom
             // Må så lagre data i database
+            //hent data i frå felt igjen (gjer som over)
+            //selected room:
+            Room selectedRoom = roomList.SelectedItem as Room;
+
+            //hent namn + username
+
+            //hent dateend + datestart igjen
+
+            //lag user først (med username og name) (kommenter vekk under:
+            //User user = new User { Name = , Username = };
+            //lag så reservation (kommenter vekk under):
+            //Reservation res = new Reservation { DateStart = , DateEnd = , CheckedIn = false, CheckedOut = false, RoomRoomId = , UserUsername = };
+
+            //legg til i databasen og lagrar (kommenter vekk under):
+            //hcx.Users.Add(user);
+            //hcx.Reservations.Add(res);
+            hcx.SaveChanges();
+
+            //burde fjerne tekst og valt ting i felt her igjen / evt ei startside
         }
 
     }
