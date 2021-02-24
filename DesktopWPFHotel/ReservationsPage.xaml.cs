@@ -187,5 +187,26 @@ namespace DesktopWPFHotel
                 ResList.DataContext = user.Reservations;
             }
         }
+
+        private void DelRes_Click(object sender, RoutedEventArgs e)
+        {
+            hcx.Reservations.Remove(selectedRes);
+            hcx.SaveChanges();
+
+            ContentGrid.Visibility = Visibility.Hidden;
+
+            if (username == null)
+            {
+                hcx.Reservations.Load();
+                var oppdatertRes = hcx.Reservations;
+                ResList.DataContext = oppdatertRes.Local;
+            }
+            else
+            {
+                hcx.Users.Load();
+                var user = hcx.Users.Local.FirstOrDefault(u => u.Username.Equals(username));
+                ResList.DataContext = user.Reservations;
+            }
+        }
     }
 }

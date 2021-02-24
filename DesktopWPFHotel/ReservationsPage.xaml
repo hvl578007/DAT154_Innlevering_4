@@ -17,7 +17,7 @@
         <Label Grid.Column="0" Content="Exelence Hotel" HorizontalAlignment="Left" Margin="32,18,0,0" VerticalAlignment="Top" Height="29" Width="108"/>
         <Label Grid.Column="0" Content="Reservations:" HorizontalAlignment="Left" Margin="19,50,0,0" VerticalAlignment="Top"/>
 
-        <ListView ItemsSource="{Binding}" Grid.Column="0" Name="ResList" HorizontalAlignment="Left" Height="357" Margin="115,52,0,0" VerticalAlignment="Top" Width="475" >
+        <ListView ItemsSource="{Binding}" Grid.Column="0" Name="ResList" HorizontalAlignment="Left" Height="474" Margin="115,52,0,0" VerticalAlignment="Top" Width="475" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Path=User.Name}"></GridViewColumn>
@@ -31,7 +31,7 @@
         </ListView>
 
         <Grid Name="ContentGrid" Grid.Column="1" Margin="0,0,218,0" Visibility="Hidden">
-            <StackPanel HorizontalAlignment="Left" Height="357" Margin="10,52,0,0" VerticalAlignment="Top" Width="262">
+            <StackPanel HorizontalAlignment="Left" Height="473" Margin="10,52,0,0" VerticalAlignment="Top" Width="262">
                 <TextBlock>
                     <Bold>Reservation id: </Bold>
                 </TextBlock>
@@ -57,7 +57,8 @@
                 </ListView>
 
                 <Button Name="ChangeRoomBtn" Content="Change Room" Click="ChangeRoom_Click" Visibility="Hidden"></Button>
-
+                <Button Name="DeleteResBtn" Content="Delete Reservation" Click="DelRes_Click"></Button>
+                
             </StackPanel>
         </Grid>
     </Grid>
