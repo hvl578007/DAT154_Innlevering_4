@@ -195,6 +195,8 @@ namespace DesktopWPFHotel
 
             ContentGrid.Visibility = Visibility.Hidden;
 
+            ResList.DataContext = null;
+
             if (username == null)
             {
                 hcx.Reservations.Load();
