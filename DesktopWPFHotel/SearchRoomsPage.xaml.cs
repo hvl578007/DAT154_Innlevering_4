@@ -131,24 +131,36 @@ namespace DesktopWPFHotel
             Reservation res = new Reservation { DateStart = dateStart, DateEnd = dateEnd, CheckedIn = false, CheckedOut = false, RoomRoomId = roomId, UserUsername = username };
             var dbUser = hcx.Users.Find(username);
 
-            if (dbUser != null)
-            {
-                errorInput.Visibility = Visibility.Visible;
-                userNameText.Text = "";
-                errorInput.Text = "User already exist";
-            }
             if (newUserCombo.SelectedIndex == 0)
             {
-                hcx.Reservations.Add(res);
-                hcx.SaveChanges();
-                resetForm();
+                if (dbUser != null)
+                {
+                    hcx.Reservations.Add(res);
+                    hcx.SaveChanges();
+                    resetForm();
+                }
+                else
+                {
+                    errorInput.Visibility = Visibility.Visible;
+                    userNameText.Text = "";
+                    errorInput.Text = "User already exist";
+                }
             }
             else if (newUserCombo.SelectedIndex == 1)
             {
-                hcx.Users.Add(user);
-                hcx.Reservations.Add(res);
-                hcx.SaveChanges();
-                resetForm();
+                if (dbUser != null)
+                {
+                    hcx.Users.Add(user);
+                    hcx.Reservations.Add(res);
+                    hcx.SaveChanges();
+                    resetForm();
+                }
+                else
+                {
+                    errorInput.Visibility = Visibility.Visible;
+                    userNameText.Text = "";
+                    errorInput.Text = "User does not exist";
+                }
             }
             
         }
