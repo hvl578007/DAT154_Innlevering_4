@@ -104,22 +104,40 @@ namespace DesktopWPFHotel
             //hent data i frå felt igjen (gjer som over)
             //selected room:
             Room selectedRoom = roomList.SelectedItem as Room;
+            int roomId = selectedRoom.RoomId;
 
             //hent namn + username
+            String name = nameText.Text;
+            String username = userNameText.Text;
 
             //hent dateend + datestart igjen
+            DateTime dateStart = CalendarFrom.SelectedDate.GetValueOrDefault();
+            DateTime dateEnd = CalendarTo.SelectedDate.GetValueOrDefault();
 
             //lag user først (med username og name) (kommenter vekk under:
-            //User user = new User { Name = , Username = };
+            User user = new User { Name = name , Username = username};
             //lag så reservation (kommenter vekk under):
-            //Reservation res = new Reservation { DateStart = , DateEnd = , CheckedIn = false, CheckedOut = false, RoomRoomId = , UserUsername = };
+            Reservation res = new Reservation { DateStart = dateStart , DateEnd = dateEnd, CheckedIn = false, CheckedOut = false, RoomRoomId = roomId, UserUsername = username};
 
             //legg til i databasen og lagrar (kommenter vekk under):
-            //hcx.Users.Add(user);
-            //hcx.Reservations.Add(res);
+            hcx.Users.Add(user);
+            hcx.Reservations.Add(res);
             hcx.SaveChanges();
 
             //burde fjerne tekst og valt ting i felt her igjen / evt ei startside
+            resetForm();
+                
+
+
+        }
+
+        protected void resetForm()
+        {
+            userNameText.Clear();
+            nameText.Clear();
+            numberOfBeds.SelectedItem = null;
+            radioBTNgood.IsChecked = false;
+            radioBTNamazing.IsChecked = false;
         }
 
     }
