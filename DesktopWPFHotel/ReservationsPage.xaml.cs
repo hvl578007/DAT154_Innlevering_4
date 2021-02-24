@@ -25,6 +25,7 @@ namespace DesktopWPFHotel
         private HotelContext hcx;
         private Reservation selectedRes;
         private Room selectedAvbRoom;
+        private string username;
 
         public ReservationsPage(HotelContext hcx)
         {
@@ -95,6 +96,10 @@ namespace DesktopWPFHotel
                 selectedAvbRoom = (sender as ListView).SelectedItem as Room;
                 ChangeRoomBtn.Visibility = Visibility.Visible;
             }
+            else
+            {
+                ChangeRoomBtn.Visibility = Visibility.Hidden;
+            }
 
         }
 
@@ -132,13 +137,8 @@ namespace DesktopWPFHotel
                 selectedRes.CheckedIn = true;
                 hcx.SaveChanges();
 
-                ResList.DataContext = null;
-
-                hcx.Reservations.Load();
-                
-                var oppdatertRes = hcx.Reservations;
-                
-                ResList.DataContext = oppdatertRes.Local;
+                //skjul høyresiden etterpå
+                ContentGrid.Visibility = Visibility.Hidden;
 
             }
             else
@@ -156,9 +156,27 @@ namespace DesktopWPFHotel
 
                 hcx.SaveChanges();
 
-                //skriv at en er sjekket ut?
+                CheckIn.Visibility = Visibility.Hidden;
+                othrAvbRooms.Visibility = Visibility.Hidden;
+                //TODO fiks er ikke blitt visible hvis en velger ny reservasjon!! sjekk når en velger ny reservasjon
+                //sjekk ut knappen og endre rom knappen blir hidden. må også gjøres i konstruktørene? 
+                //skriv at en er blitt sjekket ut oppdater listen 
 
-                //slette reservasjon?
+            }
+
+            ResList.DataContext = null;
+
+            if (username == null)
+            {
+                hcx.Reservations.Load();
+                var oppdatertRes = hcx.Reservations;
+                ResList.DataContext = oppdatertRes.Local;
+            }
+            else
+            {
+                hcx.Users.Load();
+                var user = hcx.Users.Local.FirstOrDefault(u => u.Username.Equals(username));
+                ResList.DataContext = user.Reservations;
             }
         }
     }
