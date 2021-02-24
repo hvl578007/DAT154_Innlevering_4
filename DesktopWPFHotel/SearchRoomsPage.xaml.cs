@@ -45,7 +45,13 @@ namespace DesktopWPFHotel
                 if (newUserCombo.SelectedIndex == 0)
                 {
                     nameText.Visibility = Visibility.Visible;
+                } else if (newUserCombo.SelectedIndex == 1)
+                {
+                    nameText.Visibility = Visibility.Hidden;
                 }
+            } else
+            {
+                userNameText.Visibility = Visibility.Hidden;
             }
         }
 
@@ -131,7 +137,7 @@ namespace DesktopWPFHotel
             Reservation res = new Reservation { DateStart = dateStart, DateEnd = dateEnd, CheckedIn = false, CheckedOut = false, RoomRoomId = roomId, UserUsername = username };
             var dbUser = hcx.Users.Find(username);
 
-            if (newUserCombo.SelectedIndex == 0)
+            if (newUserCombo.SelectedIndex == 1)
             {
                 if (dbUser != null)
                 {
@@ -142,13 +148,13 @@ namespace DesktopWPFHotel
                 else
                 {
                     errorInput.Visibility = Visibility.Visible;
-                    userNameText.Text = "";
-                    errorInput.Text = "User already exist";
+                    userNameText.Text = "Username";
+                    errorInput.Text = "User does not exist";
                 }
             }
-            else if (newUserCombo.SelectedIndex == 1)
+            else if (newUserCombo.SelectedIndex == 0)
             {
-                if (dbUser != null)
+                if (dbUser == null)
                 {
                     hcx.Users.Add(user);
                     hcx.Reservations.Add(res);
@@ -158,8 +164,8 @@ namespace DesktopWPFHotel
                 else
                 {
                     errorInput.Visibility = Visibility.Visible;
-                    userNameText.Text = "";
-                    errorInput.Text = "User does not exist";
+                    userNameText.Text = "Username";
+                    errorInput.Text = "User already exist";
                 }
             }
             
@@ -177,6 +183,10 @@ namespace DesktopWPFHotel
             roomList.SelectedItem = -1;
             submitButton.Visibility = Visibility.Hidden;
             errorInput.Visibility = Visibility.Hidden;
+            newUserCombo.SelectedIndex = 0;
+            roomList.DataContext = null;
+            userNameText.Text = "Username";
+            nameText.Text = "Name";
         }
 
     }

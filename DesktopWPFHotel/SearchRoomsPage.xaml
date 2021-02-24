@@ -75,8 +75,8 @@
         </ListView>
 
         <ComboBox Name="newUserCombo"  Grid.Column="3" Grid.Row="7" Width="80" HorizontalAlignment="Left" Margin="20,5,0,0">
-            <ComboBoxItem IsSelected="True">New</ComboBoxItem>
-            <ComboBoxItem >Existing</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">New user</ComboBoxItem>
+            <ComboBoxItem >Existing user</ComboBoxItem>
         </ComboBox>
 
         <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="9" Margin="20,5,0,0">
