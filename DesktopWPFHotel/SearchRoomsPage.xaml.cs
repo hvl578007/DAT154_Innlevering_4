@@ -32,8 +32,22 @@ namespace DesktopWPFHotel
             InitializeComponent();
             this.hcx = hcx;
             roomList.SelectionChanged += RoomList_SelectionChanged;
+            newUserCombo.SelectionChanged += NewUserCombo_SelectionChanged;
         }
 
+        private void NewUserCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (newUserCombo.SelectedIndex != -1)
+            {
+
+                userNameText.Visibility = Visibility.Visible;
+
+                if (newUserCombo.SelectedIndex == 0)
+                {
+                    nameText.Visibility = Visibility.Visible;
+                }
+            }
+        }
 
         protected void searchButton_Click(object sender, EventArgs e)
         {
@@ -99,42 +113,49 @@ namespace DesktopWPFHotel
 
         protected void bookButton_Click(object sender, EventArgs e)
         {
-            // Motta data fra over etter å ha "selected" rom
-            // Må så lagre data i database
-            //hent data i frå felt igjen (gjer som over)
+
             //selected room:
             Room selectedRoom = roomList.SelectedItem as Room;
             int roomId = selectedRoom.RoomId;
 
-            //hent namn + username
             String name = nameText.Text;
             String username = userNameText.Text;
 
-            //hent dateend + datestart igjen
+ 
             DateTime dateStart = CalendarFrom.SelectedDate.GetValueOrDefault();
             DateTime dateEnd = CalendarTo.SelectedDate.GetValueOrDefault();
 
-            //lag user først (med username og name) (kommenter vekk under:
-            User user = new User { Name = name , Username = username};
+            //lag user først (med username og name) 
+            User user = new User { Name = name, Username = username };
             //lag så reservation (kommenter vekk under):
-            Reservation res = new Reservation { DateStart = dateStart , DateEnd = dateEnd, CheckedIn = false, CheckedOut = false, RoomRoomId = roomId, UserUsername = username};
+            Reservation res = new Reservation { DateStart = dateStart, DateEnd = dateEnd, CheckedIn = false, CheckedOut = false, RoomRoomId = roomId, UserUsername = username };
+            String dbUser = hcx.Users.Find(username).Username;
 
-            //legg til i databasen og lagrar (kommenter vekk under):
-            hcx.Users.Add(user);
-            hcx.Reservations.Add(res);
-            hcx.SaveChanges();
-
-            //burde fjerne tekst og valt ting i felt her igjen / evt ei startside
-            resetForm();
-                
-
-
+            if (username == dbUser)
+            {
+                errorInput.Visibility = Visibility.Visible;
+                userNameText.Text = "";
+                errorInput.Text = "User already exist";
+            }
+            if (newUserCombo.SelectedIndex == 0)
+            {
+                hcx.Users.Add(user);
+                hcx.Reservations.Add(res);
+                hcx.SaveChanges();
+                resetForm();
+            }
+            else if (newUserCombo.SelectedIndex == 1)
+            {
+                hcx.Reservations.Add(res);
+                hcx.SaveChanges();
+                resetForm();
+            }
+            
         }
 
         protected void resetForm()
         {
             userNameText.Clear();
-            nameText.Clear();
             numberOfBeds.SelectedItem = -1;
             radioBTNok.IsChecked = true;
             radioBTNgood.IsChecked = false;
@@ -143,6 +164,7 @@ namespace DesktopWPFHotel
             CalendarTo.DisplayDate = DateTime.Now;
             roomList.SelectedItem = -1;
             submitButton.Visibility = Visibility.Hidden;
+            errorInput.Visibility = Visibility.Hidden;
         }
 
     }

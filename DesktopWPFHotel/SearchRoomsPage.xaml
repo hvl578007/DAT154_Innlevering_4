@@ -29,6 +29,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -60,7 +61,7 @@
 
         <TextBlock Grid.Column="3" Grid.Row="2"  Text="Available Rooms" Margin="20,0,0,0" />
 
-        <ListView Grid.Column="3" Grid.Row="3" Name="roomList" Grid.ColumnSpan="2" Grid.RowSpan="5" Margin="20,0,60,0" Width="330" Height="255" ItemsSource="{Binding}">
+        <ListView Grid.Column="3" Grid.Row="3" Name="roomList" Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="20,0,50,0" Width="330" Height="255" ItemsSource="{Binding}">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -72,12 +73,21 @@
             </ListView.View>
         </ListView>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="8" Margin="20,5,0,0">
+        <ComboBox Name="newUserCombo"  Grid.Column="3" Grid.Row="7" Width="80" HorizontalAlignment="Left" Margin="20,5,0,0">
+            <ComboBoxItem IsSelected="True">New</ComboBoxItem>
+            <ComboBoxItem >Existing</ComboBoxItem>
+        </ComboBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="9" Margin="20,5,0,0">
             <TextBox x:Name="userNameText" TextWrapping="Wrap" Text="Username" Width="120" Margin="0,0,5,0"/>
-            <TextBox x:Name="nameText" TextWrapping="Wrap" Text="Name" Width="130" Margin="0,0,5,0" />
+            <TextBox x:Name="nameText" TextWrapping="Wrap" Text="name" Width="100" Margin="0,0,5,0"/>
             <Button x:Name="submitButton" Content="Book" Width="50" Click="bookButton_Click" Visibility="Hidden"/>
         </StackPanel>
 
         <Button x:Name="searchButton" Grid.Column="1" Grid.Row="7" Content="Search" Width="60" Margin="0,0,119,0" Click="searchButton_Click"/>
+
+
+        <TextBlock x:Name="errorInput" Text="" Margin="20,0,0,0" Visibility="Hidden"/>
+   
     </Grid>
 </Page>
