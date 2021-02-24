@@ -37,8 +37,13 @@ namespace DesktopWPFHotel
 
         protected void searchButton_Click(object sender, EventArgs e)
         {
-            DateTime dateStart = (DateTime)CalendarFrom.SelectedDate;
-            DateTime dateEnd = (DateTime)CalendarTo.SelectedDate;
+            DateTime dateStart = CalendarFrom.SelectedDate.GetValueOrDefault();
+            DateTime dateEnd = CalendarTo.SelectedDate.GetValueOrDefault();
+
+            if (dateStart == null || dateEnd == null)
+            {
+                return;
+            }
 
             if (dateEnd.CompareTo(dateStart) < 0)
             {
