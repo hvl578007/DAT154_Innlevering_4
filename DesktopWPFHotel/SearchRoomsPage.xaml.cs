@@ -135,9 +135,14 @@ namespace DesktopWPFHotel
         {
             userNameText.Clear();
             nameText.Clear();
-            numberOfBeds.SelectedItem = null;
+            numberOfBeds.SelectedItem = -1;
+            radioBTNok.IsChecked = true;
             radioBTNgood.IsChecked = false;
             radioBTNamazing.IsChecked = false;
+            CalendarFrom.DisplayDate = DateTime.Now;
+            CalendarTo.DisplayDate = DateTime.Now;
+            roomList.SelectedItem = -1;
+            submitButton.Visibility = Visibility.Hidden;
         }
 
     }
