@@ -12,6 +12,8 @@ namespace ClassLibraryHotel
 
         public static List<Room> RetrieveAvaliableRooms(HotelContext hcx, int beds, int quality, DateTime dateStart, DateTime dateEnd)
         {
+            if (dateStart.Date.CompareTo(DateTime.Today) < 0 || dateEnd.Date.CompareTo(DateTime.Today) < 0) return new List<Room>();
+
             hcx.Rooms.Load();
             hcx.Reservations.Load();
             return hcx.Rooms.Local
