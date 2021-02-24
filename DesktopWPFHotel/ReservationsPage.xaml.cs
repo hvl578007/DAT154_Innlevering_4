@@ -52,6 +52,7 @@ namespace DesktopWPFHotel
             hcx.Users.Load();
 
             this.hcx = hcx;
+            this.username = usr;
 
             var user = hcx.Users.Local.FirstOrDefault(u => u.Username.Equals(usr));
 
@@ -79,6 +80,15 @@ namespace DesktopWPFHotel
                 else
                 {
                     CheckIn.Content = "Check In";
+                }
+
+                if(selectedRes.CheckedOut == true) { 
+                    CheckIn.Visibility = Visibility.Hidden;
+                    othrAvbRooms.Visibility = Visibility.Hidden;
+                }
+                else{
+                    CheckIn.Visibility = Visibility.Visible;
+                    othrAvbRooms.Visibility = Visibility.Visible;
                 }
 
                 AvbRoomsTxt.Visibility = Visibility.Hidden;
@@ -158,10 +168,8 @@ namespace DesktopWPFHotel
 
                 CheckIn.Visibility = Visibility.Hidden;
                 othrAvbRooms.Visibility = Visibility.Hidden;
-                //TODO fiks er ikke blitt visible hvis en velger ny reservasjon!! sjekk når en velger ny reservasjon
-                //sjekk ut knappen og endre rom knappen blir hidden. må også gjøres i konstruktørene? 
-                //skriv at en er blitt sjekket ut oppdater listen 
 
+                //skriv at en er blitt sjekket ut oppdater listen 
             }
 
             ResList.DataContext = null;
