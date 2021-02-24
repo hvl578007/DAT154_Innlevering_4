@@ -91,6 +91,20 @@ namespace DesktopWPFHotel
                     othrAvbRooms.Visibility = Visibility.Visible;
                 }
 
+                //knappen for å slette reservasjonene
+                if(selectedRes.CheckedIn && selectedRes.CheckedOut)
+                {
+                    DeleteResBtn.Visibility = Visibility.Visible;
+                } 
+                else if(!selectedRes.CheckedIn && !selectedRes.CheckedOut)
+                {
+                    DeleteResBtn.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    DeleteResBtn.Visibility = Visibility.Hidden;
+                }
+
                 AvbRoomsTxt.Visibility = Visibility.Hidden;
                 AvailableRooms.Visibility = Visibility.Hidden;
             }
@@ -190,6 +204,7 @@ namespace DesktopWPFHotel
 
         private void DelRes_Click(object sender, RoutedEventArgs e)
         {
+
             hcx.Reservations.Remove(selectedRes);
             hcx.SaveChanges();
 
