@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DesktopWPFHotel"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1000"
       Title="SearchRoomsPage">
 
     <Grid>
@@ -53,14 +53,14 @@
 
         <StackPanel x:Name="panel" Grid.Column="2" Grid.Row="4" >
             <TextBlock Text="Quality:" Margin="0,0,0,5" />
-            <RadioButton  Content="Ok" Name="radioBTNok"/>
+            <RadioButton IsChecked="True" Content="Ok" Name="radioBTNok"/>
             <RadioButton  Content="Good" Name="radioBTNgood"/>
             <RadioButton  Content="Amazing" Name="radioBTNamazing"/>
         </StackPanel>
 
         <TextBlock Grid.Column="3" Grid.Row="2"  Text="Available Rooms" Margin="20,0,0,0" />
 
-        <ListView Grid.Column="3" Grid.Row="3" Name="roomList" Grid.ColumnSpan="2" Grid.RowSpan="5" Margin="20,0,60,0" ItemsSource="{Binding}">
+        <ListView Grid.Column="3" Grid.Row="3" Name="roomList" Grid.ColumnSpan="2" Grid.RowSpan="5" Margin="20,0,60,0" Width="330" Height="255" ItemsSource="{Binding}">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
