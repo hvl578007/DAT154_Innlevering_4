@@ -47,12 +47,12 @@ namespace DesktopWPFHotel
 
         private void Reservation_Button(object sender, RoutedEventArgs e)
         {
-            if (validateForm())
-            {
+            //if (validateForm())
+            //{
                 ReservationsPage reservationsPage = new ReservationsPage(hcx);
                 this.NavigationService.Navigate(reservationsPage);
                 //new ReservationsWindow(hcx).Show();
-            }
+            //}
         }
 
         private void RoomInfo_Button(object sender, RoutedEventArgs e)
